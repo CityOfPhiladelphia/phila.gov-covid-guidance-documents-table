@@ -8,18 +8,18 @@
         :columns="columns"
         :options="options"
       >
-        <a
+        <!-- <a
           :id="row.id"
           slot="title"
           slot-scope="{row}"
-          :href="row['English URL']"
-        ><span class="title">{{ row.title }}</span></a>
+          :href="row.link"
+        ><span class="title">{{ row.link }}</span></a>
         <a
           slot="format"
           slot-scope="{row}"
           class="text-uppercase"
-          :href="row['English URL']"
-        >{{ row.format }} <i class="fas fa-download fa-fw" /></a>
+          :href="row.link"
+        >{{ row.format }} <i class="fas fa-download fa-fw" /></a> -->
         <div slot="afterFilter">
           <span><i class="fas fa-search fa-2x" /></span>
         </div>
@@ -53,7 +53,7 @@ export default {
   },
   data: function() {
     return {
-      columns: [ 'Title', 'Category', 'Format'],
+      columns: [ 'Title', 'Category', 'Format', 'Link'],
       // column_titles: ['Access Center', 'Address', 'ZIP Code'],
       options: {
         texts: {

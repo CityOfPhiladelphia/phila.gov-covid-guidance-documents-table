@@ -41,9 +41,6 @@ export default {
   },
   data () {
     return {
-      api: {
-        getDocumentTables: 'https://staging-admin.phila.gov/wp-json/documents/v1/document',
-      },
       documentTables: [],
       query: null,
     };
@@ -72,6 +69,8 @@ export default {
           delete site['English title'];
           site['Format'] = site['Type'];
           delete site['Type'];
+          site['Link'] = site['English URL'];
+          delete site['English URL'];
         });
 
          
