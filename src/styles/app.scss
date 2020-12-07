@@ -1,0 +1,43 @@
+tr {
+  &:hover {
+    opacity: .5;
+    background: transparent;
+  }
+  td {
+    width: 25%;
+    &:first-child {
+      width: 50%;
+    }
+
+  }
+}
+.VueTables {
+  .row {
+    margin: 0px; 
+  }
+  .VueTables__search-field {
+    label {
+      display: none;
+    }
+    input {
+      border: 2px solid #0f4d90;
+      background: white;
+      min-height: 3.8rem;
+    }
+  }
+  .VueTables__search {
+    .fa-search {
+      float: right;
+      margin-top: -69px;
+      color: white;
+      background-color: #0f4d90;
+      font-weight: 400;
+      padding: 0.4rem;
+      height: 3.7rem;
+      width: 4rem;
+      font-size: 2rem;
+      text-align: center;
+      padding-top: 13px;
+    }
+  }
+}
