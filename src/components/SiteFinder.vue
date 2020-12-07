@@ -15,12 +15,12 @@
           :href="row.Link"
           target="_blank"
         ><span class="title">{{ row.Title }}</span></a>
-       <!-- <a
-          slot="format"
-          slot-scope="{row}"
-          class="text-uppercase"
-          :href="row.link"
-        >{{ row.format }} <i class="fas fa-download fa-fw" /></a> -->
+       <multiselect
+            v-model="multiselectValue"
+            :options="categoryList"
+            placeholder="Showing all categories"
+            @input="filterTable"
+          />
         <div slot="afterFilter">
           <span><i class="fas fa-search fa-2x" /></span>
         </div>
@@ -54,7 +54,7 @@ export default {
   },
   data: function() {
     return {
-      columns: [ 'Title', 'Category', 'Format'],
+      columns: [ 'Category', 'Title', 'Format'],
       // column_titles: ['Access Center', 'Address', 'ZIP Code'],
       options: {
         texts: {
