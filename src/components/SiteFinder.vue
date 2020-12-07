@@ -8,13 +8,14 @@
         :columns="columns"
         :options="options"
       >
-        <!-- <a
-          :id="row.id"
-          slot="title"
-          slot-scope="{row}"
-          :href="row.link"
-        ><span class="title">{{ row.link }}</span></a>
         <a
+          :id="row.id"
+          slot="Title"
+          slot-scope="{row}"
+          :href="row.Link"
+          target="_blank"
+        ><span class="title">{{ row.Title }}</span></a>
+       <!-- <a
           slot="format"
           slot-scope="{row}"
           class="text-uppercase"
@@ -53,7 +54,7 @@ export default {
   },
   data: function() {
     return {
-      columns: [ 'Title', 'Category', 'Format', 'Link'],
+      columns: [ 'Title', 'Category', 'Format'],
       // column_titles: ['Access Center', 'Address', 'ZIP Code'],
       options: {
         texts: {
