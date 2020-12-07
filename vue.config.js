@@ -1,4 +1,4 @@
 module.exports = {
   filenameHashing: false,
-  publicPath: "/covid-guidance-documents-table//",
+  publicPath: "/covid-guidance-documents-table/",
 };
