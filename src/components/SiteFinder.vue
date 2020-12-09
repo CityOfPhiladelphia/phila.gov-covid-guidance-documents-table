@@ -119,8 +119,8 @@ export default {
         sortIcon: {
         base : 'fa',
         is: 'fa-sort',
-        up: 'fa-sort-asc',
-        down: 'fa-sort-desc'
+        up: 'fa-sort-up',
+        down: 'fa-sort-down'
       },
         texts: {
           filterPlaceholder: "Begin typing to filter by title or category",
