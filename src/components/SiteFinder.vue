@@ -15,12 +15,17 @@
           :href="row.Link"
           target="_blank"
         ><span class="title">{{ row.Title }}</span></a>
-       <multiselect
+        <div
+          slot="beforeFilter"
+          class="multiselect-before-filter"
+        >
+          <multiselect
             v-model="multiselectValue"
-            :options="categoryList"
+            :options="categories"
             placeholder="Showing all categories"
-     
+      
           />
+        </div>
         <div slot="afterFilter">
           <span><i class="fas fa-search fa-2x" /></span>
         </div>
@@ -45,6 +50,12 @@ export default {
         return [];
       },
     },
+    categories: {
+      type: Array,
+      default: () => {
+        return [];
+      },
+    },
     query: {
       type: String,
       default: () => {
@@ -59,8 +70,7 @@ export default {
     },
   },
   mounted () {
-    // let vm = this;
-    // vm.init();
+    
   },
   methods: {
     // onRowClick(event) {
@@ -110,14 +120,14 @@ export default {
     //   vm.columns.push('Issued or revised date');
     //   vm.categoryList = [ ...new Set(tempCategoryList) ];
     // },
-    // filterTable () {
-    //   let vm  = this;
-    //   if (vm.multiselectValue == "All categories") {
-    //     Event.$emit(`vue-tables.${vm.titleId}.filter::dropdownFilter`, null);
-    //   } else {
-    //     Event.$emit(`vue-tables.${vm.titleId}.filter::dropdownFilter`, vm.multiselectValue);
-    //   }
-    // },
+    filterTable () {
+      let vm  = this;
+      if (vm.multiselectValue == "All categories") {
+        Event.$emit(`vue-tables.${vm.titleId}.filter::dropdownFilter`, null);
+      } else {
+        Event.$emit(`vue-tables.${vm.titleId}.filter::dropdownFilter`, vm.multiselectValue);
+      }
+    },
     // closeMessage () {
     //   let vm  = this;
     //   vm.viewMessage = false;
@@ -130,7 +140,7 @@ export default {
   },
   data: function() {
     return {
-      categoryList: ['Category', 'Title'],
+      // categoryList: ['Category', 'Title'],
       multiselectValue: "",
       columns: [ 'Title', 'Category',  'Format'],
       // column_titles: ['Access Center', 'Address', 'ZIP Code'],
@@ -147,4 +157,4 @@ export default {
   },
 };
 </script>
-<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+

@@ -9,6 +9,7 @@
         <div class="large-24 columns">
           <SiteFinder
             :document-table="documentTables"
+            :categories="categories"
             :query="query"
             title-hash="Guidance documents"
           />
@@ -43,6 +44,7 @@ export default {
     return {
       documentTables: [],
       query: null,
+      categories: [],
     };
   },
   created () {
@@ -80,6 +82,11 @@ export default {
         return false;
       });
     },
+
+    async setCategories() {
+      
+    },
+
     async parseQuery () {
       let vm = this;
       vm.query = vm.$route.hash;
@@ -104,3 +111,4 @@ export default {
   },
 };
 </script>
+<style src="../node_modules/vue-multiselect/dist/vue-multiselect.min.css"></style>
