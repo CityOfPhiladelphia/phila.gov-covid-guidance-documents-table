@@ -115,6 +115,13 @@ export default {
       columns: [ 'Title', 'Category',  'Format'],
       // column_titles: ['Access Center', 'Address', 'ZIP Code'],
       options: {
+        addSortedClassToCells: true,
+        sortIcon: {
+        base : 'fa',
+        is: 'fa-sort',
+        up: 'fa-sort-asc',
+        down: 'fa-sort-desc'
+      },
         texts: {
           filterPlaceholder: "Begin typing to filter by title or category",
         },
