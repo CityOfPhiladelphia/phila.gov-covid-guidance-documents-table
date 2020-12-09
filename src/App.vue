@@ -84,7 +84,9 @@ export default {
     },
 
     async setCategories() {
-      
+      let vm = this;
+      var unique = [...new Set(vm.documentTables.map(item => item.Category))];
+      vm.categories = unique;
     },
 
     async parseQuery () {
@@ -95,6 +97,7 @@ export default {
       let vm = this;
       await vm.parseQuery();
       await vm.getDocumentTables();
+      await vm.setCategories();
       await vm.scrollToDiv(); 
     },
     async scrollToDiv() {
