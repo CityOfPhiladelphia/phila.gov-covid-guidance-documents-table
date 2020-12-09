@@ -75,7 +75,6 @@ export default {
   },
   methods: {
 
-
     async searchQuery () {
       let vm = this;
       if(vm.$route.query.table && vm.$route.query.q ) {
@@ -87,8 +86,6 @@ export default {
         }
       }
     },
-
-    
   
     filterTable () {
       let vm  = this;
@@ -98,29 +95,19 @@ export default {
         Event.$emit(`vue-tables.${vm.titleId}.filter::dropdownFilter`, vm.multiselectValue);
       }
     },
-    // closeMessage () {
-    //   let vm  = this;
-    //   vm.viewMessage = false;
-    //   vm.$refs[vm.titleId].resetQuery();
-    // },
-    // showMessage () {
-    //   let vm  = this;
-    //   vm.viewMessage = true;
-    // },
+   
   },
   data: function() {
     return {
-      // categoryList: ['Category', 'Title'],
       multiselectValue: "",
       columns: [ 'Title', 'Category',  'Format'],
-      // column_titles: ['Access Center', 'Address', 'ZIP Code'],
       options: {
         addSortedClassToCells: true,
         sortIcon: {
         base : 'fa',
         is: 'fa-sort',
         up: 'fa-sort-up',
-        down: 'fa-sort-down'
+        down: 'fa-sort-down',
       },
         texts: {
           filterPlaceholder: "Begin typing to filter by title or category",
