@@ -2,6 +2,7 @@
   <div>
     <div>
       <v-client-table
+      :id="titleId"
         :ref="titleId"
         :name="titleId"
         :data="documentTable"
@@ -23,7 +24,7 @@
             v-model="multiselectValue"
             :options="categories"
             placeholder="Showing all categories"
-      
+            @input="filterTable"
           />
         </div>
         <div slot="afterFilter">
@@ -36,7 +37,7 @@
 
 <script>
 import Multiselect from 'vue-multiselect';
-// import { Event } from 'vue-tables-2';
+import { Event } from 'vue-tables-2';
 
 export default {
   name: 'SiteFinder',
@@ -119,9 +120,17 @@ export default {
         },
         perPage: 400,
         perPageValues: [],
+        customFilters: [{
+        name: 'dropdownFilter',
+          callback: function (row, query) {
+            return row.Category == query;
+          },
+      }],
       },
       titleId: this.titleHash.split(' ').join('-').toLowerCase(),
       title: "Guidance documents",
+      searchTerm: null,
+      
     };
   },
 };
