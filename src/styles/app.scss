@@ -1,8 +1,8 @@
 tr {
-  &:hover {
-    opacity: .5;
-    background: transparent;
-  }
+  // &:hover {
+  //   opacity: .5;
+  //   background: transparent;
+  // }
   td {
     width: 25%;
     &:first-child {
@@ -55,10 +55,10 @@ tr {
     @media screen and (max-width: 768px) {
       border-bottom: 1px solid #444;
     }
-    &:hover {
-      opacity: .5;
-      background: transparent;
-    }
+    // &:hover {
+    //   opacity: .5;
+    //   background: transparent;
+    // }
     th {
       @media screen and (max-width: 768px) {
         display: none;
@@ -130,11 +130,18 @@ tr {
           margin-bottom: 0px;
         }
       }
-      .multiselect__select:before {
-        border-color: #0f4d90 transparent transparent;
-        border-width: 7.5px;
-        top: 100%;
-        border-radius: 2px;
+      .multiselect {
+        .multiselect__select{
+          margin-top: 0px;
+          transform: none;
+          &:before {
+            border-color: #0f4d90 transparent transparent;
+            border-width: 7.5px;
+            top: 100%;
+            border-radius: 2px;
+            z-index:10;
+          }
+        }
       }
       .multiselect--active {
         .multiselect__select {
@@ -142,6 +149,7 @@ tr {
           transform: none;
           &:before {
             border-color: transparent transparent #0f4d90;
+            border-width: 7.5px;
           }
         }
         input {
