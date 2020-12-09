@@ -86,6 +86,7 @@ export default {
     async setCategories() {
       let vm = this;
       var unique = [...new Set(vm.documentTables.map(item => item.Category))];
+      unique.push('All categories');
       vm.categories = unique;
     },
 
@@ -114,4 +115,4 @@ export default {
   },
 };
 </script>
-<style src="../node_modules/vue-multiselect/dist/vue-multiselect.min.css"></style>
+

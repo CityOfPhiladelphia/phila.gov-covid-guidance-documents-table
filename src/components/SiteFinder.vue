@@ -73,53 +73,22 @@ export default {
     
   },
   methods: {
-    // onRowClick(event) {
-    //   window.location.href = event.row.url;
-    // },
-    // async init () {
-    //   let vm = this;
-    //   await vm.searchQuery();
-    //   await vm.populateCategoryList();
-    // },
-    // async searchQuery () {
-    //   let vm = this;
-    //   if(vm.$route.query.table && vm.$route.query.q ) {
-    //     let table = vm.$route.query.table;
-    //     vm.searchTerm = vm.$route.query.q.split('-').join(' ');
-    //     if( table == vm.titleId) {
-    //       vm.showMessage();
-    //       vm.$refs[vm.titleId].setFilter(vm.searchTerm);
-    //     }
-    //   }
-    // },
-    // async populateCategoryList () {
-    //   let vm = this;
-    //   let description = false;
-    //   let tempCategoryList = vm.documentTable.map(doc => {
-    //     if(doc.description) {
-    //       description = true;
-    //     }
-    //     return doc.Category || 'All categories';
-    //   });
-    //   let uniqueCategories = Array.from(new Set(tempCategoryList));
-    //   if(uniqueCategories.length > 1) {
-    //     tempCategoryList.push('All categories');
-    //   } else {
-    //     tempCategoryList = [];
-    //   }
-    //   if (vm.documentTable.labelColumnTitle) {
-    //     vm.columns.push(vm.documentTable.labelColumnTitle);
-    //   }
-    //   vm.columns.push('title');
-    //   if (description) {
-    //     vm.columns.push('description');
-    //   }
-    //   if (tempCategoryList.length) {
-    //     vm.columns.push('Category');
-    //   }
-    //   vm.columns.push('Issued or revised date');
-    //   vm.categoryList = [ ...new Set(tempCategoryList) ];
-    // },
+
+
+    async searchQuery () {
+      let vm = this;
+      if(vm.$route.query.table && vm.$route.query.q ) {
+        let table = vm.$route.query.table;
+        vm.searchTerm = vm.$route.query.q.split('-').join(' ');
+        if( table == vm.titleId) {
+          vm.showMessage();
+          vm.$refs[vm.titleId].setFilter(vm.searchTerm);
+        }
+      }
+    },
+
+    
+  
     filterTable () {
       let vm  = this;
       if (vm.multiselectValue == "All categories") {
