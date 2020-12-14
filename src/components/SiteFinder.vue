@@ -104,11 +104,22 @@ export default {
       options: {
         addSortedClassToCells: true,
         sortIcon: {
-        base : 'fa',
-        is: 'fa-sort',
-        up: 'fa-sort-up',
-        down: 'fa-sort-down',
-      },
+          base : 'fa',
+          is: 'fa-sort',
+          up: 'fa-sort-up',
+          down: 'fa-sort-down',
+        },
+        orderBy:{
+          column: 'Category'
+        },
+        multiSorting: {
+          Category: [
+            {
+                column: 'Title',
+                matchDir: true
+            },
+          ]
+        },
         texts: {
           filterPlaceholder: "Begin typing to filter by title or category",
         },
