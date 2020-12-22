@@ -73,9 +73,17 @@ export default {
           delete site['Type'];
           site['Link'] = site['English URL'];
           delete site['English URL'];
-        });
 
-         
+          site['Spanish_title'] = site['Spanish title'];
+          delete site['Spanish title'];
+          site['Spanish_link'] = site['Spanish URL'];
+          delete site['Spanish URL'];
+
+          site['Chinese_title'] = site['Chinese title'];
+          delete site['Chinese title'];
+          site['Chinese_link'] = site['Chinese URL'];
+          delete site['Chinese URL'];
+        });
         vm.documentTables = tempData;
         return true;
       }).catch(() => {

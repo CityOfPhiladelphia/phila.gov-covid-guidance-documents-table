@@ -2,20 +2,32 @@
   <div>
     <div>
       <v-client-table
-      :id="titleId"
+        :id="titleId"
         :ref="titleId"
         :name="titleId"
         :data="documentTable"
         :columns="columns"
         :options="options"
       >
-        <a
-          :id="row.id"
-          slot="Title"
-          slot-scope="{row}"
+      <div :id="row.id"
+        slot="Title"
+        slot-scope="{row}"
+        >
+        <a 
           :href="row.Link"
+          class="block"><span class="title">{{ row.Title }}</span></a>
+        <a
+          :href="row.Spanish_link"
           target="_blank"
-        ><span class="title">{{ row.Title }}</span></a>
+          v-if="row.Spanish_link"
+        ><span class="title">{{ row.Spanish_title }}</span></a>
+        <a
+          :href="row.Chinese_link"
+          target="_blank"
+          class="block"
+          v-if="row.Chinese_title"
+        ><span class="title">{{ row.Chinese_title }}</span></a>
+        </div>
         <div
           slot="beforeFilter"
           class="multiselect-before-filter"
@@ -95,7 +107,6 @@ export default {
         Event.$emit(`vue-tables.${vm.titleId}.filter::dropdownFilter`, vm.multiselectValue);
       }
     },
-   
   },
   data: function() {
     return {
@@ -141,3 +152,9 @@ export default {
 };
 </script>
 <style src="vue-multiselect/dist/vue-multiselect.min.css"></style>
+<style scoped>
+.block {
+  display: block;
+  padding: 1rem 0;
+}
+</style>
