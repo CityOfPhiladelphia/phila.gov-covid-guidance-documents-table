@@ -63,7 +63,6 @@ export default {
       then(async (response) => {
         
         let tempData = response.data.records.map(function(entry) {
-          console.log(entry["fields"]);
             return entry["fields"];
           });
 
