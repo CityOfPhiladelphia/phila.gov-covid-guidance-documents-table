@@ -13,20 +13,33 @@
         slot="Title"
         slot-scope="{row}"
         >
-        <a 
-          :href="row.Link"
-          class="block"><span class="title">{{ row.Title }}</span></a>
-        <a
-          :href="row.Spanish_link"
-          target="_blank"
+        <div 
+          v-if="row.Link"
+          class="block">
+          <a 
+            :href="row.Link">
+              <span class="title">{{ row.Title }}</span>
+          </a>
+        </div>
+        <div 
           v-if="row.Spanish_link"
-        ><span class="title">{{ row.Spanish_title }}</span></a>
-        <a
-          :href="row.Chinese_link"
-          target="_blank"
-          class="block"
+          class="block">
+          <a 
+            :href="row.Spanish_link"
+            target="_blank"
+          >
+            <span class="title">{{ row.Spanish_title }}</span>
+          </a>
+        </div>
+        <div 
           v-if="row.Chinese_title"
-        ><span class="title">{{ row.Chinese_title }}</span></a>
+          class="block">
+          <a 
+            :href="row.Chinese_link"
+            target="_blank"
+          ><span class="title">{{ row.Chinese_title }}</span>
+          </a>
+        </div>
         </div>
         <div
           slot="beforeFilter"
@@ -156,5 +169,8 @@ export default {
 .block {
   display: block;
   padding: 1rem 0;
+}
+#vue-app .VueTables__row  tr {
+  cursor: default !important;
 }
 </style>
