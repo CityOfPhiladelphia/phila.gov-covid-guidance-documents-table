@@ -2,7 +2,7 @@
   <div>
     <div>
       <v-client-table
-        id="titleId"
+        :id="titleId"
         :ref="titleId"
         :name="titleId"
         :data="documentTable"
