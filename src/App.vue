@@ -95,7 +95,7 @@ export default {
       let vm = this;
       var unique = [...new Set(vm.documentTables.map(item => item.Category))];
       unique.push('All categories');
-      vm.categories = unique;
+      vm.categories = unique.sort();
     },
 
     async parseQuery () {
