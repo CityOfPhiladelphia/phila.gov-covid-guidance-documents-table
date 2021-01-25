@@ -83,6 +83,21 @@ export default {
           delete site['Chinese title'];
           site['Chinese_link'] = site['Chinese URL'];
           delete site['Chinese URL'];
+
+          site['French_title'] = site['French title'];
+          delete site['French title'];
+          site['French_link'] = site['French URL'];
+          delete site['French URL'];
+
+          site['Vietnamese_title'] = site['Vietnamese title'];
+          delete site['Vietnamese title'];
+          site['Vietnamese_link'] = site['Vietnamese URL'];
+          delete site['Vietnamese URL'];
+
+          site['Russian_title'] = site['Russian title'];
+          delete site['Russian title'];
+          site['Russian_link'] = site['Russian URL'];
+          delete site['Russian URL'];
         });
         vm.documentTables = tempData;
         return true;
