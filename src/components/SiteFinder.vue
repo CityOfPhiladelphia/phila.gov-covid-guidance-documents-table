@@ -14,7 +14,7 @@
         slot-scope="{row}"
         >
         <div 
-          v-if="row.Link"
+          v-if="row.Title"
           class="block">
           <a 
             :href="row.Link">
@@ -22,7 +22,7 @@
           </a>
         </div>
         <div 
-          v-if="row.Spanish_link"
+          v-if="row.panish_title"
           class="block">
           <a 
             :href="row.Spanish_link"
@@ -38,6 +38,33 @@
             :href="row.Chinese_link"
             target="_blank"
           ><span class="title">{{ row.Chinese_title }}</span>
+          </a>
+        </div>
+        <div 
+          v-if="row.Vietnamese_title"
+          class="block">
+          <a 
+            :href="row.Vietnamese_link"
+            target="_blank"
+          ><span class="title">{{ row.Vietnamese_title }}</span>
+          </a>
+        </div>
+        <div 
+          v-if="row.French_title"
+          class="block">
+          <a 
+            :href="row.French_link"
+            target="_blank"
+          ><span class="title">{{ row.French_title }}</span>
+          </a>
+        </div>
+        <div 
+          v-if="row.Russian_title"
+          class="block">
+          <a 
+            :href="row.Russian_link"
+            target="_blank"
+          ><span class="title">{{ row.Russian_title }}</span>
           </a>
         </div>
         </div>
