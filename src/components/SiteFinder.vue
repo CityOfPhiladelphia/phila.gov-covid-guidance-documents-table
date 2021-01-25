@@ -14,7 +14,7 @@
         slot-scope="{row}"
         >
         <div 
-          v-if="row.Link"
+          v-if="row.Title"
           class="block">
           <a 
             :href="row.Link">
@@ -22,7 +22,7 @@
           </a>
         </div>
         <div 
-          v-if="row.Spanish_link"
+          v-if="row.panish_title"
           class="block">
           <a 
             :href="row.Spanish_link"
