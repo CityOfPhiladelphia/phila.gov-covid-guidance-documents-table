@@ -22,7 +22,7 @@
           </a>
         </div>
         <div 
-          v-if="row.panish_title"
+          v-if="row.Spanish_title"
           class="block">
           <a 
             :href="row.Spanish_link"
