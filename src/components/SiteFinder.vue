@@ -9,64 +9,72 @@
         :columns="columns"
         :options="options"
       >
-      <div :id="row.id"
-        slot="Title"
-        slot-scope="{row}"
+        <div
+          :id="row.id"
+          slot="Title"
+          slot-scope="{row}"
         >
-        <div 
-          v-if="row.Title"
-          class="block">
-          <a 
-            :href="row.Link">
-              <span class="title">{{ row.Title }}</span>
-          </a>
-        </div>
-        <div 
-          v-if="row.Spanish_title"
-          class="block">
-          <a 
-            :href="row.Spanish_link"
-            target="_blank"
+          <div 
+            v-if="row.Title"
+            class="block"
           >
-            <span class="title">{{ row.Spanish_title }}</span>
-          </a>
-        </div>
-        <div 
-          v-if="row.Chinese_title"
-          class="block">
-          <a 
-            :href="row.Chinese_link"
-            target="_blank"
-          ><span class="title">{{ row.Chinese_title }}</span>
-          </a>
-        </div>
-        <div 
-          v-if="row.Vietnamese_title"
-          class="block">
-          <a 
-            :href="row.Vietnamese_link"
-            target="_blank"
-          ><span class="title">{{ row.Vietnamese_title }}</span>
-          </a>
-        </div>
-        <div 
-          v-if="row.French_title"
-          class="block">
-          <a 
-            :href="row.French_link"
-            target="_blank"
-          ><span class="title">{{ row.French_title }}</span>
-          </a>
-        </div>
-        <div 
-          v-if="row.Russian_title"
-          class="block">
-          <a 
-            :href="row.Russian_link"
-            target="_blank"
-          ><span class="title">{{ row.Russian_title }}</span>
-          </a>
-        </div>
+            <a 
+              :href="row.Link"
+            >
+              <span class="title">{{ row.Title }}</span>
+            </a>
+          </div>
+          <div 
+            v-if="row.Spanish_title"
+            class="block"
+          >
+            <a 
+              :href="row.Spanish_link"
+              target="_blank"
+            >
+              <span class="title">{{ row.Spanish_title }}</span>
+            </a>
+          </div>
+          <div 
+            v-if="row.Chinese_title"
+            class="block"
+          >
+            <a 
+              :href="row.Chinese_link"
+              target="_blank"
+            ><span class="title">{{ row.Chinese_title }}</span>
+            </a>
+          </div>
+          <div 
+            v-if="row.Vietnamese_title"
+            class="block"
+          >
+            <a 
+              :href="row.Vietnamese_link"
+              target="_blank"
+            ><span class="title">{{ row.Vietnamese_title }}</span>
+            </a>
+          </div>
+          <div 
+            v-if="row.French_title"
+            class="block"
+          >
+            <a 
+              :href="row.French_link"
+              target="_blank"
+            ><span class="title">{{ row.French_title }}</span>
+            </a>
+          </div>
+          <div 
+            v-if="row.Russian_title"
+            class="block"
+          >
+            <a 
+              :href="row.Russian_link"
+              target="_blank"
+            ><span class="title">{{ row.Russian_title }}</span>
+            </a>
+          </div>
         </div>
         <div
           slot="beforeFilter"
@@ -122,6 +130,47 @@ export default {
       },
     },
   },
+  data: function() {
+    return {
+      multiselectValue: "",
+      columns: [ 'Title', 'Category',  'Format' ],
+      options: {
+        addSortedClassToCells: true,
+        sortIcon: {
+          base : 'fa',
+          is: 'fa-sort',
+          up: 'fa-sort-up',
+          down: 'fa-sort-down',
+        },
+        orderBy:{
+          column: 'Category',
+        },
+        multiSorting: {
+          Category: [
+            {
+              column: 'Title',
+              matchDir: true,
+            },
+          ],
+        },
+        texts: {
+          filterPlaceholder: "Begin typing to filter by title or category",
+        },
+        perPage: 400,
+        perPageValues: [],
+        customFilters: [{
+          name: 'dropdownFilter',
+          callback: function (row, query) {
+            return row.Category == query;
+          },
+        }],
+      },
+      titleId: this.titleHash.split(' ').join('-').toLowerCase(),
+      title: "Guidance documents",
+      searchTerm: null,
+      
+    };
+  },
   mounted () {
     
   },
@@ -147,47 +196,6 @@ export default {
         Event.$emit(`vue-tables.${vm.titleId}.filter::dropdownFilter`, vm.multiselectValue);
       }
     },
-  },
-  data: function() {
-    return {
-      multiselectValue: "",
-      columns: [ 'Title', 'Category',  'Format'],
-      options: {
-        addSortedClassToCells: true,
-        sortIcon: {
-          base : 'fa',
-          is: 'fa-sort',
-          up: 'fa-sort-up',
-          down: 'fa-sort-down',
-        },
-        orderBy:{
-          column: 'Category'
-        },
-        multiSorting: {
-          Category: [
-            {
-                column: 'Title',
-                matchDir: true
-            },
-          ]
-        },
-        texts: {
-          filterPlaceholder: "Begin typing to filter by title or category",
-        },
-        perPage: 400,
-        perPageValues: [],
-        customFilters: [{
-        name: 'dropdownFilter',
-          callback: function (row, query) {
-            return row.Category == query;
-          },
-      }],
-      },
-      titleId: this.titleHash.split(' ').join('-').toLowerCase(),
-      title: "Guidance documents",
-      searchTerm: null,
-      
-    };
   },
 };
 </script>
