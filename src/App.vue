@@ -34,16 +34,18 @@
           />
         </div>
       </section>
-      <div>
-        <a
-          :href="theArchiveLink"
-          target="_blank"
-        >
-          <i class="fas fa-newspaper" />
-          <span>Visit the News & Events section to view press releases and posts.</span>
-        </a>
-      </div>
       <!-- Site finder -->
+      <section class="mtl">
+        <div class="large-24 columns archive-link">
+          <a
+            :href="theArchiveLink"
+            target="_blank"
+          >
+            <i class="fas fa-newspaper fa-2x prm" />
+            <span>Visit the News & Events section to view press releases and posts.</span>
+          </a>
+        </div>
+      </section>
     </div> <!-- End .entry-content -->
   </div>
 </template>
@@ -225,12 +227,20 @@ export default {
 </script>
 <style lang="scss" >
 #vue-app {
+  .multiselect__tags {
+    cursor: pointer;
+  }
   .phm {
     &.phs {
       padding: 1rem;
       &:hover {
         color: white;
       }
+    }
+  }
+  .archive-link {
+    span {
+      vertical-align: super;
     }
   }
 } 
