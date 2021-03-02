@@ -217,3 +217,15 @@ export default {
   },
 };
 </script>
+<style lang="scss" >
+#vue-app {
+  .phm {
+    &.phs {
+      padding: 1rem;
+      &:hover {
+        color: white;
+      }
+    }
+  }
+} 
+</style>
