@@ -8,6 +8,7 @@
         <div class="grid-x medium-24 bg-ghost-gray mvl translations">
           <span class="phm globe"><i class="fas fa-globe fa-2x" /></span>
           <ul
+            v-if="post"
             id="main-translation-bar"
             class="inline-list no-bullet mbn pln no-dropdown"
           >
@@ -17,13 +18,8 @@
               class=" phm phs"
               :class="{ active: activeLanguage==index }"
               @click="setActiveLanguage(index)"
-            >
-              <a
-                href="#"
-                class="dropdown-selector"
-                v-html="index"
-              />
-            </li>
+              v-html="index"
+            />
           </ul>
         </div>
       </div>
@@ -31,7 +27,7 @@
       <section class="mtl">
         <div class="large-24 columns">
           <SiteFinder
-            :document-table="documentTables"
+            :document-table="filteredTable"
             :categories="categories"
             :query="query"
             title-hash="Guidance documents"
@@ -79,6 +75,9 @@ export default {
       categories: [],
       post: null,
       activeLanguage: 'english',
+      filteredTable: [],
+      activeLink: 'Link',
+      activeTitle: 'Title',
     };
   },
   computed: {
@@ -147,6 +146,8 @@ export default {
             delete site['Russian title'];
             site['Russian_link'] = site['Russian URL'];
             delete site['Russian URL'];
+            site['Active_link'] = site['Link'];
+            site['Active_Title'] = site['Title'];
           });
           vm.documentTables = tempData;
           return true;
@@ -160,7 +161,30 @@ export default {
       unique.push('All categories');
       vm.categories = unique.sort();
     },
-
+    async setLanguageFilter() {
+      let vm = this;
+      if(vm.activeLanguage == 'spanish') {
+        vm.activeLink = 'Spanish_link';
+        vm.activeTitle = 'Spanish_title';
+      } else if(vm.activeLanguage == 'russian') {
+        vm.activeLink = 'Russian_link';
+        vm.activeTitle = 'Russian_title';
+      } else if(vm.activeLanguage == 'french') {
+        vm.activeLink = 'French_link';
+        vm.activeTitle = 'French_title';
+      } else if(vm.activeLanguage == 'vietnamese') {
+        vm.activeLink = 'Vietnamese_link';
+        vm.activeTitle = 'Vietnamese_title';
+      } else {
+        vm.activeLink = 'Link';
+        vm.activeTitle = 'Title';
+      }
+      vm.documentTables.forEach(function( site ) {
+        site['Active_Link'] = site[ vm.activeLink ];
+        site['Active_Title'] = site[ vm.activeTitle ];
+      });
+      vm.filteredTable = vm.documentTables.filter(site => !!site.Active_Title);
+    },
     async parseQuery () {
       let vm = this;
       vm.query = vm.$route.hash;
@@ -168,9 +192,10 @@ export default {
     async init () {
       let vm = this;
       await vm.parseQuery();
-      await vm.getDocumentTables();
       await vm.getPost();
+      await vm.getDocumentTables();
       await vm.setCategories();
+      await vm.setLanguageFilter();
       await vm.scrollToDiv(); 
     },
     async scrollToDiv() {
@@ -187,6 +212,7 @@ export default {
     setActiveLanguage( language ) {
       let vm = this;
       vm.activeLanguage = language;
+      vm.setLanguageFilter();
     },
   },
 };

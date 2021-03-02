@@ -19,60 +19,9 @@
             class="block"
           >
             <a 
-              :href="row.Link"
+              :href="row.Active_Link"
             >
-              <span class="title">{{ row.Title }}</span>
-            </a>
-          </div>
-          <div 
-            v-if="row.Spanish_title"
-            class="block"
-          >
-            <a 
-              :href="row.Spanish_link"
-              target="_blank"
-            >
-              <span class="title">{{ row.Spanish_title }}</span>
-            </a>
-          </div>
-          <div 
-            v-if="row.Chinese_title"
-            class="block"
-          >
-            <a 
-              :href="row.Chinese_link"
-              target="_blank"
-            ><span class="title">{{ row.Chinese_title }}</span>
-            </a>
-          </div>
-          <div 
-            v-if="row.Vietnamese_title"
-            class="block"
-          >
-            <a 
-              :href="row.Vietnamese_link"
-              target="_blank"
-            ><span class="title">{{ row.Vietnamese_title }}</span>
-            </a>
-          </div>
-          <div 
-            v-if="row.French_title"
-            class="block"
-          >
-            <a 
-              :href="row.French_link"
-              target="_blank"
-            ><span class="title">{{ row.French_title }}</span>
-            </a>
-          </div>
-          <div 
-            v-if="row.Russian_title"
-            class="block"
-          >
-            <a 
-              :href="row.Russian_link"
-              target="_blank"
-            ><span class="title">{{ row.Russian_title }}</span>
+              <span class="title">{{ row.Active_Title }}</span>
             </a>
           </div>
         </div>
