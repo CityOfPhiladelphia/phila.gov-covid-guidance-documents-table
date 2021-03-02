@@ -105,7 +105,7 @@ export default {
         texts: {
           filterPlaceholder: "Begin typing to filter by title or category",
         },
-        perPage: 400,
+        perPage: 10,
         perPageValues: [],
         customFilters: [{
           name: 'dropdownFilter',

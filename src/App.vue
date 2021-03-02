@@ -70,6 +70,12 @@ export default {
   },
   data () {
     return {
+      // postId: window.phila_js_vars.postID,
+      postId: 31584,
+      api: {
+        url: process.env.VUE_APP_API_URL,
+        endpoint: 'wp-json/programs/v1/archives/',
+      },
       documentTables: [],
       query: null,
       categories: [],
@@ -82,7 +88,7 @@ export default {
   },
   computed: {
     theArchiveLink() {
-      return 'https://www.phila.gov/the-latest/archives/#/?templates=press_release&templates=post&language=' + encodeURIComponent(this.activeLanguage);
+      return this.api.url+'the-latest/archives/#/?templates=press_release&templates=post&language=' + encodeURIComponent(this.activeLanguage);
     },
   },
   created () {
@@ -92,7 +98,7 @@ export default {
   methods: {
     async getPost () {
       let vm = this;
-      return axios.get( 'https://localhost:19107/wp-json/programs/v1/archives/31584' )
+      return axios.get( vm.api.url+vm.api.endpoint+vm.postId )
         .then(async (result) => {
           vm.post = result.data;
           return true;
