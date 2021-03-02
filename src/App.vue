@@ -38,6 +38,15 @@
           />
         </div>
       </section>
+      <div>
+        <a
+          :href="theArchiveLink"
+          target="_blank"
+        >
+          <i class="fas fa-newspaper" />
+          <span>Visit the News & Events section to view press releases and posts.</span>
+        </a>
+      </div>
       <!-- Site finder -->
     </div> <!-- End .entry-content -->
   </div>
@@ -71,6 +80,11 @@ export default {
       post: null,
       activeLanguage: 'english',
     };
+  },
+  computed: {
+    theArchiveLink() {
+      return 'https://www.phila.gov/the-latest/archives/#/?templates=press_release&templates=post&language=' + encodeURIComponent(this.activeLanguage);
+    },
   },
   created () {
     let vm = this;
