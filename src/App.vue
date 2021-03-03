@@ -16,9 +16,9 @@
               v-for="(language, index) of post.language_list"
               :key="index"
               class=" phm phs"
-              :class="{ active: activeLanguage==index }"
-              @click="setActiveLanguage(index)"
-              v-html="index"
+              :class="{ active: activeLanguage==language.language }"
+              @click="setActiveLanguage(language.language)"
+              v-html="language.key"
             />
           </ul>
         </div>
@@ -233,8 +233,16 @@ export default {
   .phm {
     &.phs {
       padding: 1rem;
+      color: #0f4d90;
+      font-weight: 700;
+      text-decoration: underline;
       &:hover {
         color: white;
+      }
+      &.active {
+        color: white;
+        font-weight: 600;
+        text-decoration: none;
       }
     }
   }
