@@ -11,7 +11,7 @@
       >
         <div
           :id="row.id"
-          slot="Title"
+          :slot="$t('title')"
           slot-scope="{row}"
         >
           <div 
@@ -26,13 +26,37 @@
           </div>
         </div>
         <div
+          :id="row.id"
+          :slot="$t('category')"
+          slot-scope="{row}"
+        >
+          <div 
+            v-if="row.Category"
+            class="block"
+          >
+            <span class="category">{{ row.Category }}</span>
+          </div>
+        </div>
+        <div
+          :id="row.id"
+          :slot="$t('format')"
+          slot-scope="{row}"
+        >
+          <div 
+            v-if="row.Format"
+            class="block"
+          >
+            <span class="format">{{ row.Format }}</span>
+          </div>
+        </div>
+        <div
           slot="beforeFilter"
           class="multiselect-before-filter"
         >
           <multiselect
             v-model="multiselectValue"
             :options="categories"
-            placeholder="Showing all categories"
+            :placeholder="$t('categoryPlaceholder')"
             @input="filterTable"
           />
         </div>
@@ -82,8 +106,21 @@ export default {
   data: function() {
     return {
       multiselectValue: "",
-      columns: [ 'Title', 'Category',  'Format' ],
-      options: {
+      titleId: this.titleHash.split(' ').join('-').toLowerCase(),
+      title: "Guidance documents",
+      searchTerm: null,
+      
+    };
+  },
+  computed: {
+    columns() {
+      return [ this.$i18n.t('title'), this.$i18n.t('category'), this.$i18n.t('format') ];
+    },
+    theArchiveLink() {
+      return this.api.url+'the-latest/archives/#/?templates=press_release&templates=post&search=covid&language=' + encodeURIComponent(this.activeLanguage);
+    },
+    options() {
+      return {
         addSortedClassToCells: true,
         sortIcon: {
           base : 'fa',
@@ -92,39 +129,34 @@ export default {
           down: 'fa-sort-down',
         },
         orderBy:{
-          column: 'Category',
+          column: this.$i18n.t('category'),
         },
         multiSorting: {
           Category: [
             {
-              column: 'Title',
+              column: this.$i18n.t('title'),
               matchDir: true,
             },
           ],
         },
         texts: {
-          filterPlaceholder: "Begin typing to filter by title or category",
+          filterPlaceholder: this.$i18n.t('filterPlaceholder'),
         },
         perPage: 10,
         perPageValues: [],
         customFilters: [{
           name: 'dropdownFilter',
           callback: function (row, query) {
-            return row.Category == query;
+            return row[this.$i18n.t('category')] == query;
           },
         }],
-      },
-      titleId: this.titleHash.split(' ').join('-').toLowerCase(),
-      title: "Guidance documents",
-      searchTerm: null,
-      
-    };
+      };
+    },
   },
   mounted () {
     
   },
   methods: {
-
     async searchQuery () {
       let vm = this;
       if(vm.$route.query.table && vm.$route.query.q ) {

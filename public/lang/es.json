@@ -1,3 +1,7 @@
 {
-	"test": "why"
+	"categoryPlaceholder": "Mostrando todas las categorías",
+	"filterPlaceholder": "Comience a escribir para filtrar por título o categoría",
+	"title": "Título",
+	"category": "Categoría",
+	"format": "Formato"
 }
