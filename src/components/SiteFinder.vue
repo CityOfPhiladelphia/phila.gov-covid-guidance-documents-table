@@ -147,7 +147,7 @@ export default {
         customFilters: [{
           name: 'dropdownFilter',
           callback: function (row, query) {
-            return row[this.$i18n.t('category')] == query;
+            return row.Category == query;
           },
         }],
       };
