@@ -238,7 +238,7 @@ export default {
       let vm = this;
       vm.activeLanguage = language;
       let lang = this.languageToLang();
-      console.log(lang);
+      // console.log(lang);
       loadLanguageAsync(lang);
       // set table values here
       // if (lang !== this.$route.query.lang) {

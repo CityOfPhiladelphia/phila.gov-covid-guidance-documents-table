@@ -37,11 +37,12 @@ export function loadLanguageAsync (lang) {
   if (loadedLanguages.includes(lang)) {
     return Promise.resolve(setI18nLanguage(lang));
   }
-  console.log('wow');
+  // console.log('wow');
   // If the language hasn't been loaded yet
   axios({
     method: 'get',
-    url: `${lang}.json`,
+    // url: `public/${lang}.json`,
+    url: `lang/${lang}.json`,
   }).then(response => {
     i18n.setLocaleMessage(lang, response.data);
     loadedLanguages.push(lang);
