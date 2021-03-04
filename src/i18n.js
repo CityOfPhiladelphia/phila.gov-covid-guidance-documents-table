@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
-import * as messages from '@/static/en-US.json';
+import * as messages from '/public/lang/en-US.json';
 import axios from 'axios';
 
 Vue.use(VueI18n);

@@ -79,6 +79,7 @@ export default {
       api: {
         url: process.env.VUE_APP_API_URL,
         endpoint: 'wp-json/programs/v1/archives/',
+        airTable: process.env.VUE_APP_AIR_TABLES_API,
       },
       documentTables: [],
       query: null,
@@ -112,10 +113,8 @@ export default {
     },
     async getDocumentTables () {
       let vm = this;
-      let slug = window.location.pathname;
-      slug = 'https://api.airtable.com/v0/app6HWoBlToNp1uKQ/Table%201?&view=Grid%20view';
       return axios.get(
-        slug,
+        vm.api.airTable,
         { headers: { Authorization: "Bearer " + app_key }},
       ).
         then(async (response) => {
