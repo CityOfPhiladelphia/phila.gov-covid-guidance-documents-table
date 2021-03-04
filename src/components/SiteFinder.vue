@@ -26,7 +26,6 @@
           </div>
         </div>
         <div
-          :id="row.id"
           :slot="$t('category')"
           slot-scope="{row}"
         >
@@ -38,7 +37,6 @@
           </div>
         </div>
         <div
-          :id="row.id"
           :slot="$t('format')"
           slot-scope="{row}"
         >
@@ -150,6 +148,18 @@ export default {
             return row.Category == query;
           },
         }],
+        filterAlgorithm: {
+          // Add all titles, categories, and formats to this list
+          Título(row, query) {
+            return (row.Active_Title).includes(query);
+          },
+          Categoría(row, query) {
+            return (row.Category).includes(query);
+          },
+          Formato(row, query) {
+            return (row.Format).includes(query);
+          },
+        },
       };
     },
   },
