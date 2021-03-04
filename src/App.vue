@@ -4,6 +4,7 @@
       data-swiftype-index="true"
       class="entry-content row"
     >
+      <h1 v-html="$t('test')" />
       <div class="grid-container translations-container">
         <div class="grid-x medium-24 bg-ghost-gray mvl translations">
           <span class="phm globe"><i class="fas fa-globe fa-2x" /></span>
@@ -55,6 +56,7 @@ import Vue from 'vue';
 import axios from 'axios';
 import SiteFinder from './components/SiteFinder.vue';
 import { ClientTable } from 'vue-tables-2';
+import { loadLanguageAsync } from './i18n.js';
 // import { _ } from 'vue-underscore';
 const app_key = "keyNcseMILLKVVFC3";
 
@@ -90,7 +92,7 @@ export default {
   },
   computed: {
     theArchiveLink() {
-      return this.api.url+'the-latest/archives/#/?templates=press_release&templates=post&language=' + encodeURIComponent(this.activeLanguage);
+      return this.api.url+'the-latest/archives/#/?templates=press_release&templates=post&search=covid&language=' + encodeURIComponent(this.activeLanguage);
     },
   },
   created () {
@@ -217,9 +219,31 @@ export default {
         });
       }
     },
+    languageToLang () {
+      let vm = this;
+      if ( vm.activeLanguage == 'english' ) {
+        return 'en-US';
+      } else if(vm.activeLanguage == 'spanish') {
+        return 'es';
+      } else if(vm.activeLanguage == 'french') {
+        return 'fr';
+      } else if(vm.activeLanguage == 'russian') {
+        return 'ru';
+      } else if(vm.activeLanguage == 'vietnamese') {
+        return 'vt';
+      } 
+      return 'en-US';
+    },
     setActiveLanguage( language ) {
       let vm = this;
       vm.activeLanguage = language;
+      let lang = this.languageToLang();
+      console.log(lang);
+      loadLanguageAsync(lang);
+      // set table values here
+      // if (lang !== this.$route.query.lang) {
+      //   this.$router.push({ query: { lang }});
+      // }
       vm.setLanguageFilter();
     },
   },
@@ -232,7 +256,7 @@ export default {
   }
   .phm {
     &.phs {
-      padding: 1rem;
+      padding: 1rem 2rem;
       color: #0f4d90;
       font-weight: 700;
       text-decoration: underline;
