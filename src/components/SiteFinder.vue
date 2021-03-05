@@ -67,6 +67,51 @@
           ><span class="title">{{ row.Russian_title }}</span>
           </a>
         </div>
+        <div 
+          v-if="row.Korean_title"
+          class="block">
+          <a 
+            :href="row.Korean_link"
+            target="_blank"
+          ><span class="title">{{ row.Korean_title }}</span>
+          </a>
+        </div>
+        <div 
+          v-if="row.Haitian_Creole_title"
+          class="block">
+          <a 
+            :href="row.Haitian_Creole_link"
+            target="_blank"
+          ><span class="title">{{ row.Haitian_Creole_title }}</span>
+          </a>
+        </div>
+        <div 
+          v-if="row.Indonesian_link"
+          class="block">
+          <a 
+            :href="row.Indonesian_link"
+            target="_blank"
+          ><span class="title">{{ row.Indonesian_title }}</span>
+          </a>
+        </div>
+        <div 
+          v-if="row.Khmer_title"
+          class="block">
+          <a 
+            :href="row.Khmer_link"
+            target="_blank"
+          ><span class="title">{{ row.Khmer_title }}</span>
+          </a>
+        </div>
+        <div 
+          v-if="row.Swahili_title"
+          class="block">
+          <a 
+            :href="row.Swahili_link"
+            target="_blank"
+          ><span class="title">{{ row.Swahili_title }}</span>
+          </a>
+        </div>
         </div>
         <div
           slot="beforeFilter"
