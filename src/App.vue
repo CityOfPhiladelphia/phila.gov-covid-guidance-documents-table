@@ -4,7 +4,6 @@
       data-swiftype-index="true"
       class="entry-content row"
     >
-      <h1 v-html="$t('test')" />
       <div class="grid-container translations-container">
         <div class="grid-x medium-24 bg-ghost-gray mvl translations">
           <span class="phm globe"><i class="fas fa-globe fa-2x" /></span>
@@ -57,7 +56,6 @@ import axios from 'axios';
 import SiteFinder from './components/SiteFinder.vue';
 import { ClientTable } from 'vue-tables-2';
 import { loadLanguageAsync } from './i18n.js';
-// import { _ } from 'vue-underscore';
 const app_key = "keyNcseMILLKVVFC3";
 
 Vue.use(ClientTable, {
@@ -196,7 +194,8 @@ export default {
     },
     async parseQuery () {
       let vm = this;
-      vm.query = vm.$route.hash;
+      vm.query = vm.$route.query.language;
+      vm.setActiveLanguage( vm.query );
     },
     async init () {
       let vm = this;
@@ -237,12 +236,10 @@ export default {
       let vm = this;
       vm.activeLanguage = language;
       let lang = this.languageToLang();
-      // console.log(lang);
       loadLanguageAsync(lang);
-      // set table values here
-      // if (lang !== this.$route.query.lang) {
-      //   this.$router.push({ query: { lang }});
-      // }
+      if (language !== vm.$route.query.language) {
+        this.$router.push({ query: { language }});
+      }
       vm.setLanguageFilter();
     },
   },
