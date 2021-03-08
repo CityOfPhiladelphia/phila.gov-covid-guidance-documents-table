@@ -234,7 +234,11 @@ export default {
     },
     setActiveLanguage( language ) {
       let vm = this;
-      vm.activeLanguage = language;
+      if (language == undefined) {
+        vm.activeLanguage = 'english';
+      } else {
+        vm.activeLanguage = language;
+      }
       let lang = this.languageToLang();
       loadLanguageAsync(lang);
       if (language !== vm.$route.query.language) {
