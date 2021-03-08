@@ -303,6 +303,14 @@ tr {
       }
     }
   }
+  .inline-list {
+    li.phs {
+      padding: 1rem 0.8rem;
+      @media screen and (max-width: 768px) {
+        padding: 0.5rem;
+      }
+    }
+  }
 }
 
 .VueTables__sort-icon {
