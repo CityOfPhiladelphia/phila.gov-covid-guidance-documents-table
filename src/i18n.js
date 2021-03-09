@@ -1,7 +1,5 @@
 import Vue from 'vue';
 import VueI18n from 'vue-i18n';
-import * as messages from '/public/lang/en-US.json';
-import axios from 'axios';
 
 Vue.use(VueI18n);
 
@@ -10,7 +8,7 @@ export const i18n = new VueI18n({
   locale: 'en-US',
   fallbackLocale: 'en-US',
   messages: {
-    "en-US": messages.default, // set locale messages
+    "en-US": '',
   },
 });
 
@@ -39,15 +37,24 @@ export function loadLanguageAsync (lang) {
   }
   // console.log('wow');
   // If the language hasn't been loaded yet
-  axios({
-    method: 'get',
-    // url: `public/${lang}.json`,
-    url: `lang/${lang}.json`,
-  }).then(response => {
-    i18n.setLocaleMessage(lang, response.data);
-    loadedLanguages.push(lang);
-    return setI18nLanguage(lang);
-  }).catch(() => {
-  });
-
+  i18n.setLocaleMessage(lang, languages[lang]);
+  loadedLanguages.push(lang);
+  return setI18nLanguage(lang);
 }
+
+const languages = {
+  'en-US': {
+    "categoryPlaceholder": "Showing all categories",
+    "filterPlaceholder": "Begin typing to filter by title or category",
+    "title": "Title",
+    "category": "Category",
+    "format": "Format",
+  },
+  'es': {
+    "categoryPlaceholder": "Mostrando todas las categorías",
+    "filterPlaceholder": "Comience a escribir para filtrar por título o categoría",
+    "title": "Título",
+    "category": "Categoría",
+    "format": "Formato",
+  },
+};
