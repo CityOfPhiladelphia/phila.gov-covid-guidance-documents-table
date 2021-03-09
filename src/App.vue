@@ -5,7 +5,7 @@
       class="entry-content row"
     >
       <div class="grid-container translations-container">
-        <div class="grid-x medium-24 bg-ghost-gray mvl translations">
+        <div class="grid-x medium-24 bg-ghost-gray mtl translations">
           <span class="phm globe"><i class="fas fa-globe fa-2x" /></span>
           <ul
             v-if="post"
@@ -13,16 +13,22 @@
             class="inline-list no-bullet mbn pln no-dropdown"
           >
             <li
-              v-for="(language, index) of post.language_list"
+              v-for="(language, index) in post.translated_content"
               :key="index"
               class=" phm phs"
-              :class="{ active: activeLanguage==language.language }"
-              @click="setActiveLanguage(language.language)"
-              v-html="language.key"
+              :class="{ active: activeLanguage==language.translated_language }"
+              @click="setActiveLanguage(language.translated_language)"
+              v-html="languageMap(language.translated_language)"
             />
           </ul>
         </div>
       </div>
+      <section class="mtl">
+        <div class="large-24 columns">
+          <h2 v-html="theActiveWysiwyg[0].phila_custom_wysiwyg.phila_wysiwyg_title" />
+          <p v-html="theActiveWysiwyg[0].phila_custom_wysiwyg.phila_wysiwyg_content" />
+        </div>
+      </section>
       <!-- Site finder -->
       <section class="mtl">
         <div class="large-24 columns">
@@ -73,7 +79,7 @@ export default {
   data () {
     return {
       // postId: window.phila_js_vars.postID,
-      postId: 31584,
+      postId: 167190,
       api: {
         url: process.env.VUE_APP_API_URL,
         endpoint: 'wp-json/programs/v1/archives/',
@@ -92,6 +98,12 @@ export default {
   computed: {
     theArchiveLink() {
       return this.api.url+'the-latest/archives/#/?templates=press_release&templates=post&search=covid&language=' + encodeURIComponent(this.activeLanguage);
+    },
+    theActiveWysiwyg() {
+      let vm = this;
+      return vm.post.translated_content.filter(wys => {
+        return wys.translated_language == vm.activeLanguage;
+      });
     },
   },
   created () {
@@ -231,6 +243,20 @@ export default {
         return 'vt';
       } 
       return 'en-US';
+    },
+    languageMap ( language ) {
+      if ( language == 'english' ) {
+        return 'English';
+      } else if(language == 'spanish') {
+        return 'Español';
+      } else if(language == 'french') {
+        return 'fr';
+      } else if(language == 'russian') {
+        return 'ru';
+      } else if(language == 'vietnamese') {
+        return 'vt';
+      } 
+      return 'English';
     },
     setActiveLanguage( language ) {
       let vm = this;
