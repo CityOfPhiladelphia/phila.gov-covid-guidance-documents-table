@@ -4,8 +4,23 @@
       data-swiftype-index="true"
       class="entry-content row"
     >
+      <section
+        v-if="post.translated_content"
+        class="mtl"
+      >
+        <div class="grid-container">
+          <div class="grid-x">
+            <div class="cell">
+              <h2
+                class="contrast"
+                v-html="theActiveWysiwyg[0].phila_custom_wysiwyg.phila_wysiwyg_title"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
       <div class="grid-container translations-container">
-        <div class="grid-x medium-24 bg-ghost-gray mtl translations">
+        <div class="grid-x medium-24 bg-ghost-gray translations">
           <span class="phm globe"><i class="fas fa-globe fa-2x" /></span>
           <ul
             v-if="post"
@@ -25,7 +40,6 @@
       </div>
       <section class="mtl">
         <div class="large-24 columns">
-          <h2 v-html="theActiveWysiwyg[0].phila_custom_wysiwyg.phila_wysiwyg_title" />
           <p v-html="theActiveWysiwyg[0].phila_custom_wysiwyg.phila_wysiwyg_content" />
         </div>
       </section>
@@ -78,8 +92,8 @@ export default {
   },
   data () {
     return {
-      postId: window.phila_js_vars.postID,
-      // postId: 167190,
+      // postId: window.phila_js_vars.postID,
+      postId: 167190,
       api: {
         url: process.env.VUE_APP_API_URL,
         endpoint: 'wp-json/programs/v1/archives/',
