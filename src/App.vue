@@ -78,8 +78,8 @@ export default {
   },
   data () {
     return {
-      // postId: window.phila_js_vars.postID,
-      postId: 167190,
+      postId: window.phila_js_vars.postID,
+      // postId: 167190,
       api: {
         url: process.env.VUE_APP_API_URL,
         endpoint: 'wp-json/programs/v1/archives/',
