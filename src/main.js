@@ -7,10 +7,13 @@ import { i18n } from './i18n.js';
 import VueRouter from 'vue-router';
 import underscore from 'vue-underscore';
 import './styles/app.scss';
+import VueFuse from "vue-fuse";
+
 
 Vue.config.productionTip = false;
 Vue.use(underscore);
 Vue.use(VueRouter);
+Vue.use(VueFuse);
 
 const router = new VueRouter({
   routes: [

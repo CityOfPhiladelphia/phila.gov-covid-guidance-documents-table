@@ -107,7 +107,6 @@ export default {
       titleId: this.titleHash.split(' ').join('-').toLowerCase(),
       title: "Guidance documents",
       searchTerm: null,
-      
     };
   },
   computed: {
@@ -151,7 +150,22 @@ export default {
         filterAlgorithm: {
           // Add all titles, categories, and formats to this list
           Título(row, query) {
-            return (row.Active_Title).includes(query);
+            let vm = this;
+            let rowArray = [ row.Active_Title ];
+            let searchOptions = {
+              shouldSort: false, 
+              threshold: 0.2,
+              distance: 1000,
+              keys: [
+                'Título',
+              ],
+            };
+
+            let x = await vm.$search(query, rowArray, searchOptions);
+            if (x.length) {
+              return true;
+            }
+            return false;
           },
           Categoría(row, query) {
             return (row.Category).includes(query);
