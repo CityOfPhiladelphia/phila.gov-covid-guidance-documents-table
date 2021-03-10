@@ -243,7 +243,7 @@ export default {
     languageToLang () {
       let vm = this;
       if ( vm.activeLanguage == 'english' ) {
-        return 'en-US';
+        return 'en';
       } else if(vm.activeLanguage == 'spanish') {
         return 'es';
       } else if(vm.activeLanguage == 'french') {
@@ -253,7 +253,7 @@ export default {
       } else if(vm.activeLanguage == 'vietnamese') {
         return 'vt';
       } 
-      return 'en-US';
+      return 'en';
     },
     languageMap ( language ) {
       if ( language == 'english' ) {

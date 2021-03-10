@@ -13,6 +13,7 @@ Vue.use(underscore);
 Vue.use(VueRouter);
 
 const router = new VueRouter({
+  mode: 'history',
   routes: [
     {
       path: '/',
