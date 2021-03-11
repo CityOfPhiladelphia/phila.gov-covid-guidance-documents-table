@@ -152,11 +152,6 @@ export default {
             site['Link'] = site['English URL'];
             delete site['English URL'];
 
-            site['Spanish_title'] = site['Spanish title'];
-            delete site['Spanish title'];
-            site['Spanish_link'] = site['Spanish URL'];
-            delete site['Spanish URL'];
-
             site['Chinese_title'] = site['Chinese title'];
             delete site['Chinese title'];
             site['Chinese_link'] = site['Chinese URL'];
@@ -167,15 +162,46 @@ export default {
             site['French_link'] = site['French URL'];
             delete site['French URL'];
 
-            site['Vietnamese_title'] = site['Vietnamese title'];
-            delete site['Vietnamese title'];
-            site['Vietnamese_link'] = site['Vietnamese URL'];
-            delete site['Vietnamese URL'];
+            site['Haitian_Creole_title'] = site['Haitian-Creole title'];
+            delete site['Haitian-Creole title'];
+            site['Haitian_Creole_link'] = site['Haitian-Creole URL'];
+            delete site['Haitian-Creole URL'];
+
+            site['Indonesian_title'] = site['Indonesian title'];
+            delete site['Indonesian title'];
+            site['Indonesian_link'] = site['Indonesian URL'];
+            delete site['Indonesian URL'];
+
+            site['Khmer_title'] = site['Khmer title'];
+            delete site['Khmer title'];
+            site['Khmer_link'] = site['Khmer URL'];
+            delete site['Khmer URL'];
+
+            site['Korean_title'] = site['Korean title'];
+            delete site['Korean title'];
+            site['Korean_link'] = site['Korean URL'];
+            delete site['Korean URL'];
 
             site['Russian_title'] = site['Russian title'];
             delete site['Russian title'];
             site['Russian_link'] = site['Russian URL'];
             delete site['Russian URL'];
+
+            site['Spanish_title'] = site['Spanish title'];
+            delete site['Spanish title'];
+            site['Spanish_link'] = site['Spanish URL'];
+            delete site['Spanish URL'];
+
+            site['Swahili_title'] = site['Swahili title'];
+            delete site['Swahili title'];
+            site['Swahili_link'] = site['Swahili URL'];
+            delete site['Swahili URL'];
+
+            site['Vietnamese_title'] = site['Vietnamese title'];
+            delete site['Vietnamese title'];
+            site['Vietnamese_link'] = site['Vietnamese URL'];
+            delete site['Vietnamese URL'];
+
             site['Active_link'] = site['Link'];
             site['Active_Title'] = site['Title'];
           });
@@ -193,15 +219,33 @@ export default {
     },
     async setLanguageFilter() {
       let vm = this;
-      if(vm.activeLanguage == 'spanish') {
-        vm.activeLink = 'Spanish_link';
-        vm.activeTitle = 'Spanish_title';
-      } else if(vm.activeLanguage == 'russian') {
-        vm.activeLink = 'Russian_link';
-        vm.activeTitle = 'Russian_title';
+      if(vm.activeLanguage == 'chinese') {
+        vm.activeLink = 'Chinese_link';
+        vm.activeTitle = 'Chinese_title'; 
       } else if(vm.activeLanguage == 'french') {
         vm.activeLink = 'French_link';
         vm.activeTitle = 'French_title';
+      } else if(vm.activeLanguage == 'haitian') {
+        vm.activeLink = 'Haitian-Creole_link';
+        vm.activeTitle = 'Haitian-Creole_title'; 
+      } else if(vm.activeLanguage == 'indonesian') {
+        vm.activeLink = 'Indonesian_link';
+        vm.activeTitle = 'Indonesian_title'; 
+      } else if(vm.activeLanguage == 'khmer') {
+        vm.activeLink = 'Khmer_link';
+        vm.activeTitle = 'Khmer_title';
+      } else if(vm.activeLanguage == 'korean') {
+        vm.activeLink = 'Korean_link';
+        vm.activeTitle = 'Korean_title';
+      } else if(vm.activeLanguage == 'russian') {
+        vm.activeLink = 'Russian_link';
+        vm.activeTitle = 'Russian_title';
+      } else if(vm.activeLanguage == 'spanish') {
+        vm.activeLink = 'Spanish_link';
+        vm.activeTitle = 'Spanish_title';
+      } else if(vm.activeLanguage == 'swahili') {
+        vm.activeLink = 'Swahili_link';
+        vm.activeTitle = 'Swahili_title';
       } else if(vm.activeLanguage == 'vietnamese') {
         vm.activeLink = 'Vietnamese_link';
         vm.activeTitle = 'Vietnamese_title';
@@ -244,30 +288,54 @@ export default {
       let vm = this;
       if ( vm.activeLanguage == 'english' ) {
         return 'en';
-      } else if(vm.activeLanguage == 'spanish') {
-        return 'es';
-      } else if(vm.activeLanguage == 'french') {
+      } else if ( vm.activeLanguage == 'chinese' ) {
+        return 'zh';
+      } else if ( vm.activeLanguage == 'french' ) {
         return 'fr';
-      } else if(vm.activeLanguage == 'russian') {
+      } else if ( vm.activeLanguage == 'haitian' ) {
+        return 'ht';
+      } else if ( vm.activeLanguage == 'indonesian' ) {
+        return 'id';
+      } else if ( vm.activeLanguage == 'khmer' ) {
+        return 'km';
+      } else if ( vm.activeLanguage == 'korean' ) {
+        return 'ko';
+      } else if ( vm.activeLanguage == 'russian' ) {
         return 'ru';
-      } else if(vm.activeLanguage == 'vietnamese') {
+      } else if ( vm.activeLanguage == 'spanish' ) {
+        return 'es';
+      } else if ( vm.activeLanguage == 'swahili' ) {
+        return 'sw';
+      } else if ( vm.activeLanguage == 'vietnamese' ) {
         return 'vt';
-      } 
+      }
       return 'en';
     },
     languageMap ( language ) {
       if ( language == 'english' ) {
         return 'English';
-      } else if(language == 'spanish') {
+      } else if ( language == 'chinese' ) {
+        return '中文';
+      } else if ( language == 'french' ) {
+        return 'Français';
+      } else if ( language == 'haitian' ) {
+        return 'Ayisyen';
+      } else if ( language == 'indonesian' ) {
+        return 'Bahasa Indonesia';
+      } else if ( language == 'khmer' ) {
+        return 'ខ្មែរ';
+      } else if ( language == 'korean' ) {
+        return '한국어';
+      } else if ( language == 'russian' ) {
+        return 'Pусский';
+      } else if ( language == 'spanish' ) {
         return 'Español';
-      } else if(language == 'french') {
-        return 'fr';
-      } else if(language == 'russian') {
-        return 'ru';
-      } else if(language == 'vietnamese') {
-        return 'vt';
-      } 
-      return 'English';
+      } else if ( language == 'swahili' ) {
+        return 'Kiswahili';
+      } else if ( language == 'vietnamese' ) {
+        return 'Tiếng Việt';
+      }
+      return 'en';
     },
     setActiveLanguage( language ) {
       let vm = this;
