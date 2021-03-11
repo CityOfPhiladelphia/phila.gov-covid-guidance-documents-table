@@ -44,6 +44,7 @@
       <section class="mtl">
         <div class="large-24 columns">
           <SiteFinder
+            ref="siteFinder"
             :document-table="filteredTable"
             :categories="categories"
             :query="query"
@@ -147,7 +148,9 @@ export default {
           tempData.forEach(function(site) {
             site['Title'] = site['English title'];
             delete site['English title'];
-            site['Format'] = site['Type'];
+            site['Format'] = site['Type'].trim();
+            site['Default_format'] = site['Type'].trim();
+            site['Default_category'] = site['Category'];
             delete site['Type'];
             site['Link'] = site['English URL'];
             delete site['English URL'];
@@ -238,8 +241,8 @@ export default {
     },
     async setCategories() {
       let vm = this;
-      var unique = [ ...new Set(vm.documentTables.map(item => item.Category)) ];
-      unique.push('All categories');
+      let unique = [ ...new Set(vm.documentTables.map(item => vm.$i18n.t(item.Default_category))) ];
+      unique.push(vm.$i18n.t('All categories'));
       vm.categories = unique.sort();
     },
     async setLanguageFilter() {
@@ -281,6 +284,8 @@ export default {
       vm.documentTables.forEach(function( site ) {
         site['Active_Link'] = site[ vm.activeLink ];
         site['Active_Title'] = site[ vm.activeTitle ];
+        site['Category'] = vm.$i18n.t(site['Default_category']);
+        site['Format'] = vm.$i18n.t(site['Default_format']);
       });
       vm.filteredTable = vm.documentTables.filter(site => !!site.Active_Title);
     },
@@ -362,7 +367,7 @@ export default {
       }
       return 'en';
     },
-    setActiveLanguage( language ) {
+    async setActiveLanguage( language ) {
       let vm = this;
       if (language == undefined) {
         vm.activeLanguage = 'english';
@@ -374,7 +379,9 @@ export default {
       if (language !== vm.$route.query.language) {
         this.$router.push({ query: { language }});
       }
-      vm.setLanguageFilter();
+      await vm.setLanguageFilter();
+      await vm.setCategories();
+      this.$refs.siteFinder.filterTable( true );
     },
   },
 };

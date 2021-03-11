@@ -178,10 +178,12 @@ export default {
         }
       }
     },
-  
-    filterTable () {
+    filterTable (reset = false) {
       let vm  = this;
-      if (vm.multiselectValue == "All categories") {
+      if (reset == true ) {
+        vm.multiselectValue = null;
+      }
+      if (vm.multiselectValue == this.$i18n.t("All categories")) {
         Event.$emit(`vue-tables.${vm.titleId}.filter::dropdownFilter`, null);
       } else {
         Event.$emit(`vue-tables.${vm.titleId}.filter::dropdownFilter`, vm.multiselectValue);
