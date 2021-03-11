@@ -172,6 +172,31 @@ export default {
             site['Vietnamese_link'] = site['Vietnamese URL'];
             delete site['Vietnamese URL'];
 
+            site['Korean_title'] = site['Korean title'];
+            delete site['Korean title'];
+            site['Korean_link'] = site['Korean URL'];
+            delete site['Korean URL'];
+
+            site['Haitian_Creole_title'] = site['Haitian-Creole title'];
+            delete site['Haitian-Creole title'];
+            site['Haitian_Creole_link'] = site['Haitian-Creole URL'];
+            delete site['Haitian-Creole URL'];
+
+            site['Indonesian_title'] = site['Indonesian title'];
+            delete site['Indonesian title'];
+            site['Indonesian_link'] = site['Indonesian URL'];
+            delete site['Indonesian URL'];
+
+            site['Khmer_title'] = site['Khmer title'];
+            delete site['Khmer title'];
+            site['Khmer_link'] = site['Khmer URL'];
+            delete site['Khmer URL'];
+
+            site['Swahili_title'] = site['Swahili title'];
+            delete site['Swahili title'];
+            site['Swahili_link'] = site['Swahili URL'];
+            delete site['Swahili URL'];
+
             site['Russian_title'] = site['Russian title'];
             delete site['Russian title'];
             site['Russian_link'] = site['Russian URL'];
