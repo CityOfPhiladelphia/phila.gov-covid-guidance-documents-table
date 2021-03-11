@@ -59,7 +59,7 @@
             target="_blank"
           >
             <i class="fas fa-newspaper fa-2x prm" />
-            <span>Visit the News & Events section to view press releases and posts.</span>
+            <span v-html="$t('news')" />
           </a>
         </div>
       </section>
@@ -90,7 +90,7 @@ export default {
   data () {
     return {
       postId: window.phila_js_vars.postID,
-      // postId: 167190,
+      // postId: 121009,
       api: {
         url: process.env.VUE_APP_API_URL,
         endpoint: 'wp-json/programs/v1/archives/',

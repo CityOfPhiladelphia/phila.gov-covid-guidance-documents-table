@@ -140,7 +140,7 @@ export default {
         texts: {
           filterPlaceholder: this.$i18n.t('filterPlaceholder'),
         },
-        perPage: 10,
+        perPage: 400,
         perPageValues: [],
         customFilters: [{
           name: 'dropdownFilter',
