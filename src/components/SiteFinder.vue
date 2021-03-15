@@ -159,6 +159,78 @@ export default {
           Formato(row, query) {
             return (row.Format).includes(query);
           },
+          Titre(row, query) {
+            return (row.Active_Title).includes(query);
+          },
+          Catégorie(row, query) {
+            return (row.Category).includes(query);
+          },
+          Tit(row, query) {
+            return (row.Active_Title).includes(query);
+          },
+          Kategori(row, query) {
+            return (row.Category).includes(query);
+          },
+          Fòma(row, query) {
+            return (row.Format).includes(query);
+          },
+          Judul(row, query) {
+            return (row.Active_Title).includes(query);
+          },
+          តួនាទី(row, query) {
+            return (row.Active_Title).includes(query);
+          },
+          ប្រភេទ(row, query) {
+            return (row.Category).includes(query);
+          },
+          ទ្រង់ទ្រាយ(row, query) {
+            return (row.Format).includes(query);
+          },
+          제목(row, query) {
+            return (row.Active_Title).includes(query);
+          },
+          범주(row, query) {
+            return (row.Category).includes(query);
+          },
+          형식(row, query) {
+            return (row.Format).includes(query);
+          },
+          Название(row, query) {
+            return (row.Active_Title).includes(query);
+          },
+          Категория(row, query) {
+            return (row.Category).includes(query);
+          },
+          Формат(row, query) {
+            return (row.Format).includes(query);
+          },
+          Tiêu_đề(row, query) {
+            return (row.Active_Title).includes(query);
+          },
+          Hạng_mục(row, query) {
+            return (row.Category).includes(query);
+          },
+          Định_dạng(row, query) {
+            return (row.Format).includes(query);
+          },
+          Kichwa(row, query) {
+            return (row.Active_Title).includes(query);
+          },
+          Kategoria(row, query) {
+            return (row.Category).includes(query);
+          },
+          Umbizo(row, query) {
+            return (row.Format).includes(query);
+          },
+          标题(row, query) {
+            return (row.Active_Title).includes(query);
+          },
+          类别(row, query) {
+            return (row.Category).includes(query);
+          },
+          格式(row, query) {
+            return (row.Format).includes(query);
+          },
         },
       };
     },
