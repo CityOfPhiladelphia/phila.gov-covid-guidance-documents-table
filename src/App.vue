@@ -43,6 +43,11 @@
       <!-- Site finder -->
       <section class="mtl">
         <div class="large-24 columns">
+          <h3
+            id="documents"
+            class="h2 mls mbm"
+            v-html="theActiveWysiwyg[0].phila_custom_wysiwyg.phila_wysiwyg_title"
+          />
           <SiteFinder
             ref="siteFinder"
             :document-table="filteredTable"
@@ -90,8 +95,8 @@ export default {
   },
   data () {
     return {
-      postId: window.phila_js_vars.postID,
-      // postId: 121009,
+      // postId: window.phila_js_vars.postID,
+      postId: 121009,
       api: {
         url: process.env.VUE_APP_API_URL,
         endpoint: 'wp-json/programs/v1/archives/',
