@@ -133,6 +133,18 @@ export default {
           return false;
         });
     },
+    async orderLanguages () {
+      let vm = this;
+      let sortOrder = [ 'english', 'spanish', 'chinese', 'vietnamese', 'russian', 'french', 'arabic', 'bengali', 'haitian', 'hindo', 'indonesian', 'khmer', 'korean', 'portuguese', 'swahili', 'urdu' ];
+      var ordering = {};
+      for ( let i=0; i<sortOrder.length; i++) {
+        ordering[sortOrder[i]] = i;
+      }
+
+      vm.post.translated_content.sort( function(a, b) {
+        return (ordering[a.translated_language] - ordering[b.translated_language]);
+      });
+    },
     async getDocumentTables () {
       let vm = this;
       return axios.get(
@@ -298,6 +310,7 @@ export default {
       let vm = this;
       await vm.parseQuery();
       await vm.getPost();
+      await vm.orderLanguages();
       await vm.getDocumentTables();
       await vm.setCategories();
       await vm.setLanguageFilter();
