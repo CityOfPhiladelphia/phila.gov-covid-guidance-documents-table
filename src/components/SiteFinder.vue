@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div v-if="documentTable.length">
       <v-client-table
         :id="titleId"
         :ref="titleId"

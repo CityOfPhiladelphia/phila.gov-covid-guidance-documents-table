@@ -44,6 +44,7 @@
       <section class="mtl">
         <div class="large-24 columns">
           <h3
+            v-if="filteredTable.length"
             id="documents"
             class="h2 mls mbm"
             v-html="theActiveWysiwyg[0].phila_custom_wysiwyg.phila_wysiwyg_title"
