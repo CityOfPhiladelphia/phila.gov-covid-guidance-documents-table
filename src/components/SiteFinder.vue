@@ -148,88 +148,305 @@ export default {
             return row.Category == query;
           },
         }],
+        customSorting: {
+          Título(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Active_Title >= b.Active_Title ? 1 : -1;
+              }
+              return a.Active_Title <= b.Active_Title ? 1 : -1;
+            };
+          },
+          Categoría(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Category >= b.Category ? 1 : -1;
+              }
+              return a.Category <= b.Category ? 1 : -1;
+            };
+          },
+          Formato(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Format >= b.Format ? 1 : -1;
+              }
+              return a.Format <= b.Format ? 1 : -1;
+            };
+          },
+          Titre(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Active_Title >= b.Active_Title ? 1 : -1;
+              }
+              return a.Active_Title <= b.Active_Title ? 1 : -1;
+            };
+          },
+          Catégorie(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Category >= b.Category ? 1 : -1;
+              }
+              return a.Category <= b.Category ? 1 : -1;
+            };
+          },
+          Tit(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Active_Title >= b.Active_Title ? 1 : -1;
+              }
+              return a.Active_Title <= b.Active_Title ? 1 : -1;
+            };
+          },
+          Kategori(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Category >= b.Category ? 1 : -1;
+              }
+              return a.Category <= b.Category ? 1 : -1;
+            };
+          },
+          Fòma(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Format >= b.Format ? 1 : -1;
+              }
+              return a.Format <= b.Format ? 1 : -1;
+            };
+          },
+          Judul(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Active_Title >= b.Active_Title ? 1 : -1;
+              }
+              return a.Active_Title <= b.Active_Title ? 1 : -1;
+            };
+          },
+          តួនាទី(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Active_Title >= b.Active_Title ? 1 : -1;
+              }
+              return a.Active_Title <= b.Active_Title ? 1 : -1;
+            };
+          },
+          ប្រភេទ(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Category >= b.Category ? 1 : -1;
+              }
+              return a.Category <= b.Category ? 1 : -1;
+            };
+          },
+          ទ្រង់ទ្រាយ(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Format >= b.Format ? 1 : -1;
+              }
+              return a.Format <= b.Format ? 1 : -1;
+            };
+          },
+          제목(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Active_Title >= b.Active_Title ? 1 : -1;
+              }
+              return a.Active_Title <= b.Active_Title ? 1 : -1;
+            };
+          },
+          범주(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Category >= b.Category ? 1 : -1;
+              }
+              return a.Category <= b.Category ? 1 : -1;
+            };
+          },
+          형식(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Format >= b.Format ? 1 : -1;
+              }
+              return a.Format <= b.Format ? 1 : -1;
+            };
+          },
+          Название(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Active_Title >= b.Active_Title ? 1 : -1;
+              }
+              return a.Active_Title <= b.Active_Title ? 1 : -1;
+            };
+          },
+          Категория(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Category >= b.Category ? 1 : -1;
+              }
+              return a.Category <= b.Category ? 1 : -1;
+            };
+          },
+          Формат(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Format >= b.Format ? 1 : -1;
+              }
+              return a.Format <= b.Format ? 1 : -1;
+            };
+          },
+          Tiêu_đề(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Active_Title >= b.Active_Title ? 1 : -1;
+              }
+              return a.Active_Title <= b.Active_Title ? 1 : -1;
+            };
+          },
+          Hạng_mục(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Category >= b.Category ? 1 : -1;
+              }
+              return a.Category <= b.Category ? 1 : -1;
+            };
+          },
+          Định_dạng(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Format >= b.Format ? 1 : -1;
+              }
+              return a.Format <= b.Format ? 1 : -1;
+            };
+          },
+          Kichwa(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Active_Title >= b.Active_Title ? 1 : -1;
+              }
+              return a.Active_Title <= b.Active_Title ? 1 : -1;
+            };
+          },
+          Kategoria(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Category >= b.Category ? 1 : -1;
+              }
+              return a.Category <= b.Category ? 1 : -1;
+            };
+          },
+          Umbizo(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Format >= b.Format ? 1 : -1;
+              }
+              return a.Format <= b.Format ? 1 : -1;
+            };
+          },
+          标题(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Active_Title >= b.Active_Title ? 1 : -1;
+              }
+              return a.Active_Title <= b.Active_Title ? 1 : -1;
+            };
+          },
+          类别(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Category >= b.Category ? 1 : -1;
+              }
+              return a.Category <= b.Category ? 1 : -1;
+            };
+          },
+          格式(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Format >= b.Format ? 1 : -1;
+              }
+              return a.Format <= b.Format ? 1 : -1;
+            };
+          },
+        },
         filterAlgorithm: {
-          // Add all titles, categories, and formats to this list
           Título(row, query) {
-            return (row.Active_Title).includes(query);
+            return this.theFilter(row.Active_Title, query);
           },
           Categoría(row, query) {
-            return (row.Category).includes(query);
+            return this.theFilter(row.Category, query);
           },
           Formato(row, query) {
-            return (row.Format).includes(query);
+            return this.theFilter(row.Format, query);
           },
           Titre(row, query) {
-            return (row.Active_Title).includes(query);
+            return this.theFilter(row.Active_Title, query);
           },
           Catégorie(row, query) {
-            return (row.Category).includes(query);
+            return this.theFilter(row.Category, query);
           },
           Tit(row, query) {
-            return (row.Active_Title).includes(query);
+            return this.theFilter(row.Active_Title, query);
           },
           Kategori(row, query) {
-            return (row.Category).includes(query);
+            return this.theFilter(row.Category, query);
           },
           Fòma(row, query) {
-            return (row.Format).includes(query);
+            return this.theFilter(row.Format, query);
           },
           Judul(row, query) {
-            return (row.Active_Title).includes(query);
+            return this.theFilter(row.Active_Title, query);
           },
           តួនាទី(row, query) {
-            return (row.Active_Title).includes(query);
+            return this.theFilter(row.Active_Title, query);
           },
           ប្រភេទ(row, query) {
-            return (row.Category).includes(query);
+            return this.theFilter(row.Category, query);
           },
           ទ្រង់ទ្រាយ(row, query) {
-            return (row.Format).includes(query);
+            return this.theFilter(row.Format, query);
           },
           제목(row, query) {
-            return (row.Active_Title).includes(query);
+            return this.theFilter(row.Active_Title, query);
           },
           범주(row, query) {
-            return (row.Category).includes(query);
+            return this.theFilter(row.Category, query);
           },
           형식(row, query) {
-            return (row.Format).includes(query);
+            return this.theFilter(row.Format, query);
           },
           Название(row, query) {
-            return (row.Active_Title).includes(query);
+            return this.theFilter(row.Active_Title, query);
           },
           Категория(row, query) {
-            return (row.Category).includes(query);
+            return this.theFilter(row.Category, query);
           },
           Формат(row, query) {
-            return (row.Format).includes(query);
+            return this.theFilter(row.Format, query);
           },
           Tiêu_đề(row, query) {
-            return (row.Active_Title).includes(query);
+            return this.theFilter(row.Active_Title, query);
           },
           Hạng_mục(row, query) {
-            return (row.Category).includes(query);
+            return this.theFilter(row.Category, query);
           },
           Định_dạng(row, query) {
-            return (row.Format).includes(query);
+            return this.theFilter(row.Format, query);
           },
           Kichwa(row, query) {
-            return (row.Active_Title).includes(query);
+            return this.theFilter(row.Active_Title, query);
           },
           Kategoria(row, query) {
-            return (row.Category).includes(query);
+            return this.theFilter(row.Category, query);
           },
           Umbizo(row, query) {
-            return (row.Format).includes(query);
+            return this.theFilter(row.Format, query);
           },
           标题(row, query) {
-            return (row.Active_Title).includes(query);
+            return this.theFilter(row.Active_Title, query);
           },
           类别(row, query) {
-            return (row.Category).includes(query);
+            return this.theFilter(row.Category, query);
           },
           格式(row, query) {
-            return (row.Format).includes(query);
+            return this.theFilter(row.Format, query);
           },
         },
       };
@@ -260,6 +477,9 @@ export default {
       } else {
         Event.$emit(`vue-tables.${vm.titleId}.filter::dropdownFilter`, vm.multiselectValue);
       }
+    },
+    theFilter( item , query ) {
+      return item.toLowerCase().includes(query.toLowerCase());
     },
   },
 };
