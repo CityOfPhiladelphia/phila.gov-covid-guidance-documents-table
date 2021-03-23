@@ -96,8 +96,8 @@ export default {
   },
   data () {
     return {
-      postId: window.phila_js_vars.postID,
-      // postId: 121009,
+      // postId: window.phila_js_vars.postID,
+      postId: 121009,
       api: {
         url: process.env.VUE_APP_API_URL,
         endpoint: 'wp-json/programs/v1/archives/',
@@ -165,89 +165,40 @@ export default {
 
           tempData.forEach(function(site) {
             site['Title'] = site['English title'];
-            delete site['English title'];
             site['Format'] = site['Type'].trim();
             site['Default_format'] = site['Type'].trim();
             site['Default_category'] = site['Category'];
-            delete site['Type'];
             site['Link'] = site['English URL'];
-            delete site['English URL'];
-
             site['Chinese_title'] = site['Chinese title'];
-            delete site['Chinese title'];
             site['Chinese_link'] = site['Chinese URL'];
-            delete site['Chinese URL'];
-
             site['French_title'] = site['French title'];
-            delete site['French title'];
             site['French_link'] = site['French URL'];
-            delete site['French URL'];
-
             site['Haitian_Creole_title'] = site['Haitian-Creole title'];
-            delete site['Haitian-Creole title'];
             site['Haitian_Creole_link'] = site['Haitian-Creole URL'];
-            delete site['Haitian-Creole URL'];
-
             site['Indonesian_title'] = site['Indonesian title'];
-            delete site['Indonesian title'];
             site['Indonesian_link'] = site['Indonesian URL'];
-            delete site['Indonesian URL'];
-
             site['Khmer_title'] = site['Khmer title'];
-            delete site['Khmer title'];
             site['Khmer_link'] = site['Khmer URL'];
-            delete site['Khmer URL'];
-
             site['Korean_title'] = site['Korean title'];
-            delete site['Korean title'];
             site['Korean_link'] = site['Korean URL'];
-            delete site['Korean URL'];
-
             site['Korean_title'] = site['Korean title'];
-            delete site['Korean title'];
             site['Korean_link'] = site['Korean URL'];
-            delete site['Korean URL'];
-
             site['Haitian_Creole_title'] = site['Haitian-Creole title'];
-            delete site['Haitian-Creole title'];
             site['Haitian_Creole_link'] = site['Haitian-Creole URL'];
-            delete site['Haitian-Creole URL'];
-
             site['Indonesian_title'] = site['Indonesian title'];
-            delete site['Indonesian title'];
             site['Indonesian_link'] = site['Indonesian URL'];
-            delete site['Indonesian URL'];
-
             site['Khmer_title'] = site['Khmer title'];
-            delete site['Khmer title'];
             site['Khmer_link'] = site['Khmer URL'];
-            delete site['Khmer URL'];
-
             site['Swahili_title'] = site['Swahili title'];
-            delete site['Swahili title'];
             site['Swahili_link'] = site['Swahili URL'];
-            delete site['Swahili URL'];
-
             site['Russian_title'] = site['Russian title'];
-            delete site['Russian title'];
             site['Russian_link'] = site['Russian URL'];
-            delete site['Russian URL'];
-
             site['Spanish_title'] = site['Spanish title'];
-            delete site['Spanish title'];
             site['Spanish_link'] = site['Spanish URL'];
-            delete site['Spanish URL'];
-
             site['Swahili_title'] = site['Swahili title'];
-            delete site['Swahili title'];
             site['Swahili_link'] = site['Swahili URL'];
-            delete site['Swahili URL'];
-
             site['Vietnamese_title'] = site['Vietnamese title'];
-            delete site['Vietnamese title'];
             site['Vietnamese_link'] = site['Vietnamese URL'];
-            delete site['Vietnamese URL'];
-
             site['Active_link'] = site['Link'];
             site['Active_Title'] = site['Title'];
           });
