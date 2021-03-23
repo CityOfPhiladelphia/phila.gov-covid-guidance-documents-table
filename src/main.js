@@ -3,6 +3,7 @@ BrowserSupport.isIE10();
 
 import Vue from 'vue';
 import App from './App.vue';
+import { i18n } from './i18n.js';
 import VueRouter from 'vue-router';
 import underscore from 'vue-underscore';
 import './styles/app.scss';
@@ -12,6 +13,7 @@ Vue.use(underscore);
 Vue.use(VueRouter);
 
 const router = new VueRouter({
+  mode: 'history',
   routes: [
     {
       path: '/',
@@ -23,6 +25,7 @@ const router = new VueRouter({
 new Vue({
   el: '#vue-app',
   router,
+  i18n,
   render (h) {
     return h(App, {});
   },

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>
+    <div v-if="documentTable.length">
       <v-client-table
         :id="titleId"
         :ref="titleId"
@@ -9,109 +9,43 @@
         :columns="columns"
         :options="options"
       >
-      <div :id="row.id"
-        slot="Title"
-        slot-scope="{row}"
+        <div
+          :id="row.id"
+          :slot="$t('title')"
+          slot-scope="{row}"
         >
-        <div 
-          v-if="row.Title"
-          class="block">
-          <a 
-            :href="row.Link">
-              <span class="title">{{ row.Title }}</span>
-          </a>
-        </div>
-        <div 
-          v-if="row.Spanish_title"
-          class="block">
-          <a 
-            :href="row.Spanish_link"
-            target="_blank"
+          <div 
+            v-if="row.Title"
+            class="block"
           >
-            <span class="title">{{ row.Spanish_title }}</span>
-          </a>
+            <a 
+              :href="row.Active_Link"
+            >
+              <span class="title">{{ row.Active_Title }}</span>
+            </a>
+          </div>
         </div>
-        <div 
-          v-if="row.Chinese_title"
-          class="block">
-          <a 
-            :href="row.Chinese_link"
-            target="_blank"
-          ><span class="title">{{ row.Chinese_title }}</span>
-          </a>
+        <div
+          :slot="$t('category')"
+          slot-scope="{row}"
+        >
+          <div 
+            v-if="row.Category"
+            class="block"
+          >
+            <span class="category">{{ row.Category }}</span>
+          </div>
         </div>
-        <div 
-          v-if="row.Vietnamese_title"
-          class="block">
-          <a 
-            :href="row.Vietnamese_link"
-            target="_blank"
-          ><span class="title">{{ row.Vietnamese_title }}</span>
-          </a>
-        </div>
-        <div 
-          v-if="row.French_title"
-          class="block">
-          <a 
-            :href="row.French_link"
-            target="_blank"
-          ><span class="title">{{ row.French_title }}</span>
-          </a>
-        </div>
-        <div 
-          v-if="row.Russian_title"
-          class="block">
-          <a 
-            :href="row.Russian_link"
-            target="_blank"
-          ><span class="title">{{ row.Russian_title }}</span>
-          </a>
-        </div>
-        <div 
-          v-if="row.Korean_title"
-          class="block">
-          <a 
-            :href="row.Korean_link"
-            target="_blank"
-          ><span class="title">{{ row.Korean_title }}</span>
-          </a>
-        </div>
-        <div 
-          v-if="row.Haitian_Creole_title"
-          class="block">
-          <a 
-            :href="row.Haitian_Creole_link"
-            target="_blank"
-          ><span class="title">{{ row.Haitian_Creole_title }}</span>
-          </a>
-        </div>
-        <div 
-          v-if="row.Indonesian_link"
-          class="block">
-          <a 
-            :href="row.Indonesian_link"
-            target="_blank"
-          ><span class="title">{{ row.Indonesian_title }}</span>
-          </a>
-        </div>
-        <div 
-          v-if="row.Khmer_title"
-          class="block">
-          <a 
-            :href="row.Khmer_link"
-            target="_blank"
-          ><span class="title">{{ row.Khmer_title }}</span>
-          </a>
-        </div>
-        <div 
-          v-if="row.Swahili_title"
-          class="block">
-          <a 
-            :href="row.Swahili_link"
-            target="_blank"
-          ><span class="title">{{ row.Swahili_title }}</span>
-          </a>
-        </div>
+        <div
+          :slot="$t('format')"
+          slot-scope="{row}"
+        >
+          <div 
+            v-if="row.Format"
+            class="block"
+          >
+            <span class="format">{{ row.Format }}</span>
+          </div>
         </div>
         <div
           slot="beforeFilter"
@@ -120,7 +54,7 @@
           <multiselect
             v-model="multiselectValue"
             :options="categories"
-            placeholder="Showing all categories"
+            :placeholder="$t('categoryPlaceholder')"
             @input="filterTable"
           />
         </div>
@@ -167,11 +101,361 @@ export default {
       },
     },
   },
+  data: function() {
+    return {
+      multiselectValue: "",
+      titleId: this.titleHash.split(' ').join('-').toLowerCase(),
+      title: "Guidance documents",
+      searchTerm: null,
+      
+    };
+  },
+  computed: {
+    columns() {
+      return [ this.$i18n.t('title'), this.$i18n.t('category'), this.$i18n.t('format') ];
+    },
+    theArchiveLink() {
+      return this.api.url+'the-latest/archives/#/?templates=press_release&templates=post&search=covid&language=' + encodeURIComponent(this.activeLanguage);
+    },
+    options() {
+      return {
+        addSortedClassToCells: true,
+        sortIcon: {
+          base : 'fa',
+          is: 'fa-sort',
+          up: 'fa-sort-up',
+          down: 'fa-sort-down',
+        },
+        orderBy:{
+          column: this.$i18n.t('category'),
+        },
+        multiSorting: {
+          Category: [
+            {
+              column: this.$i18n.t('title'),
+              matchDir: true,
+            },
+          ],
+        },
+        texts: {
+          filterPlaceholder: this.$i18n.t('filterPlaceholder'),
+        },
+        perPage: 400,
+        perPageValues: [],
+        customFilters: [{
+          name: 'dropdownFilter',
+          callback: function (row, query) {
+            return row.Category == query;
+          },
+        }],
+        customSorting: {
+          Título(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Active_Title >= b.Active_Title ? 1 : -1;
+              }
+              return a.Active_Title <= b.Active_Title ? 1 : -1;
+            };
+          },
+          Categoría(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Category >= b.Category ? 1 : -1;
+              }
+              return a.Category <= b.Category ? 1 : -1;
+            };
+          },
+          Formato(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Format >= b.Format ? 1 : -1;
+              }
+              return a.Format <= b.Format ? 1 : -1;
+            };
+          },
+          Titre(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Active_Title >= b.Active_Title ? 1 : -1;
+              }
+              return a.Active_Title <= b.Active_Title ? 1 : -1;
+            };
+          },
+          Catégorie(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Category >= b.Category ? 1 : -1;
+              }
+              return a.Category <= b.Category ? 1 : -1;
+            };
+          },
+          Tit(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Active_Title >= b.Active_Title ? 1 : -1;
+              }
+              return a.Active_Title <= b.Active_Title ? 1 : -1;
+            };
+          },
+          Kategori(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Category >= b.Category ? 1 : -1;
+              }
+              return a.Category <= b.Category ? 1 : -1;
+            };
+          },
+          Fòma(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Format >= b.Format ? 1 : -1;
+              }
+              return a.Format <= b.Format ? 1 : -1;
+            };
+          },
+          Judul(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Active_Title >= b.Active_Title ? 1 : -1;
+              }
+              return a.Active_Title <= b.Active_Title ? 1 : -1;
+            };
+          },
+          តួនាទី(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Active_Title >= b.Active_Title ? 1 : -1;
+              }
+              return a.Active_Title <= b.Active_Title ? 1 : -1;
+            };
+          },
+          ប្រភេទ(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Category >= b.Category ? 1 : -1;
+              }
+              return a.Category <= b.Category ? 1 : -1;
+            };
+          },
+          ទ្រង់ទ្រាយ(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Format >= b.Format ? 1 : -1;
+              }
+              return a.Format <= b.Format ? 1 : -1;
+            };
+          },
+          제목(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Active_Title >= b.Active_Title ? 1 : -1;
+              }
+              return a.Active_Title <= b.Active_Title ? 1 : -1;
+            };
+          },
+          범주(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Category >= b.Category ? 1 : -1;
+              }
+              return a.Category <= b.Category ? 1 : -1;
+            };
+          },
+          형식(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Format >= b.Format ? 1 : -1;
+              }
+              return a.Format <= b.Format ? 1 : -1;
+            };
+          },
+          Название(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Active_Title >= b.Active_Title ? 1 : -1;
+              }
+              return a.Active_Title <= b.Active_Title ? 1 : -1;
+            };
+          },
+          Категория(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Category >= b.Category ? 1 : -1;
+              }
+              return a.Category <= b.Category ? 1 : -1;
+            };
+          },
+          Формат(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Format >= b.Format ? 1 : -1;
+              }
+              return a.Format <= b.Format ? 1 : -1;
+            };
+          },
+          Tiêu_đề(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Active_Title >= b.Active_Title ? 1 : -1;
+              }
+              return a.Active_Title <= b.Active_Title ? 1 : -1;
+            };
+          },
+          Hạng_mục(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Category >= b.Category ? 1 : -1;
+              }
+              return a.Category <= b.Category ? 1 : -1;
+            };
+          },
+          Định_dạng(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Format >= b.Format ? 1 : -1;
+              }
+              return a.Format <= b.Format ? 1 : -1;
+            };
+          },
+          Kichwa(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Active_Title >= b.Active_Title ? 1 : -1;
+              }
+              return a.Active_Title <= b.Active_Title ? 1 : -1;
+            };
+          },
+          Kategoria(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Category >= b.Category ? 1 : -1;
+              }
+              return a.Category <= b.Category ? 1 : -1;
+            };
+          },
+          Umbizo(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Format >= b.Format ? 1 : -1;
+              }
+              return a.Format <= b.Format ? 1 : -1;
+            };
+          },
+          标题(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Active_Title >= b.Active_Title ? 1 : -1;
+              }
+              return a.Active_Title <= b.Active_Title ? 1 : -1;
+            };
+          },
+          类别(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Category >= b.Category ? 1 : -1;
+              }
+              return a.Category <= b.Category ? 1 : -1;
+            };
+          },
+          格式(ascending) {
+            return function (a, b) {
+              if (ascending) {
+                return a.Format >= b.Format ? 1 : -1;
+              }
+              return a.Format <= b.Format ? 1 : -1;
+            };
+          },
+        },
+        filterAlgorithm: {
+          Título(row, query) {
+            return this.theFilter(row.Active_Title, query);
+          },
+          Categoría(row, query) {
+            return this.theFilter(row.Category, query);
+          },
+          Formato(row, query) {
+            return this.theFilter(row.Format, query);
+          },
+          Titre(row, query) {
+            return this.theFilter(row.Active_Title, query);
+          },
+          Catégorie(row, query) {
+            return this.theFilter(row.Category, query);
+          },
+          Tit(row, query) {
+            return this.theFilter(row.Active_Title, query);
+          },
+          Kategori(row, query) {
+            return this.theFilter(row.Category, query);
+          },
+          Fòma(row, query) {
+            return this.theFilter(row.Format, query);
+          },
+          Judul(row, query) {
+            return this.theFilter(row.Active_Title, query);
+          },
+          តួនាទី(row, query) {
+            return this.theFilter(row.Active_Title, query);
+          },
+          ប្រភេទ(row, query) {
+            return this.theFilter(row.Category, query);
+          },
+          ទ្រង់ទ្រាយ(row, query) {
+            return this.theFilter(row.Format, query);
+          },
+          제목(row, query) {
+            return this.theFilter(row.Active_Title, query);
+          },
+          범주(row, query) {
+            return this.theFilter(row.Category, query);
+          },
+          형식(row, query) {
+            return this.theFilter(row.Format, query);
+          },
+          Название(row, query) {
+            return this.theFilter(row.Active_Title, query);
+          },
+          Категория(row, query) {
+            return this.theFilter(row.Category, query);
+          },
+          Формат(row, query) {
+            return this.theFilter(row.Format, query);
+          },
+          Tiêu_đề(row, query) {
+            return this.theFilter(row.Active_Title, query);
+          },
+          Hạng_mục(row, query) {
+            return this.theFilter(row.Category, query);
+          },
+          Định_dạng(row, query) {
+            return this.theFilter(row.Format, query);
+          },
+          Kichwa(row, query) {
+            return this.theFilter(row.Active_Title, query);
+          },
+          Kategoria(row, query) {
+            return this.theFilter(row.Category, query);
+          },
+          Umbizo(row, query) {
+            return this.theFilter(row.Format, query);
+          },
+          标题(row, query) {
+            return this.theFilter(row.Active_Title, query);
+          },
+          类别(row, query) {
+            return this.theFilter(row.Category, query);
+          },
+          格式(row, query) {
+            return this.theFilter(row.Format, query);
+          },
+        },
+      };
+    },
+  },
   mounted () {
     
   },
   methods: {
-
     async searchQuery () {
       let vm = this;
       if(vm.$route.query.table && vm.$route.query.q ) {
@@ -183,56 +467,20 @@ export default {
         }
       }
     },
-  
-    filterTable () {
+    filterTable (reset = false) {
       let vm  = this;
-      if (vm.multiselectValue == "All categories") {
+      if (reset == true ) {
+        vm.multiselectValue = null;
+      }
+      if (vm.multiselectValue == this.$i18n.t("All categories")) {
         Event.$emit(`vue-tables.${vm.titleId}.filter::dropdownFilter`, null);
       } else {
         Event.$emit(`vue-tables.${vm.titleId}.filter::dropdownFilter`, vm.multiselectValue);
       }
     },
-  },
-  data: function() {
-    return {
-      multiselectValue: "",
-      columns: [ 'Title', 'Category',  'Format'],
-      options: {
-        addSortedClassToCells: true,
-        sortIcon: {
-          base : 'fa',
-          is: 'fa-sort',
-          up: 'fa-sort-up',
-          down: 'fa-sort-down',
-        },
-        orderBy:{
-          column: 'Category'
-        },
-        multiSorting: {
-          Category: [
-            {
-                column: 'Title',
-                matchDir: true
-            },
-          ]
-        },
-        texts: {
-          filterPlaceholder: "Begin typing to filter by title or category",
-        },
-        perPage: 400,
-        perPageValues: [],
-        customFilters: [{
-        name: 'dropdownFilter',
-          callback: function (row, query) {
-            return row.Category == query;
-          },
-      }],
-      },
-      titleId: this.titleHash.split(' ').join('-').toLowerCase(),
-      title: "Guidance documents",
-      searchTerm: null,
-      
-    };
+    theFilter( item , query ) {
+      return item.toLowerCase().includes(query.toLowerCase());
+    },
   },
 };
 </script>
