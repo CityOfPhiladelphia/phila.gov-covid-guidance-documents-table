@@ -181,8 +181,6 @@ export default {
             site['Khmer_link'] = site['Khmer URL'];
             site['Korean_title'] = site['Korean title'];
             site['Korean_link'] = site['Korean URL'];
-            site['Korean_title'] = site['Korean title'];
-            site['Korean_link'] = site['Korean URL'];
             site['Haitian_Creole_title'] = site['Haitian-Creole title'];
             site['Haitian_Creole_link'] = site['Haitian-Creole URL'];
             site['Indonesian_title'] = site['Indonesian title'];
@@ -223,8 +221,8 @@ export default {
         vm.activeLink = 'French_link';
         vm.activeTitle = 'French_title';
       } else if(vm.activeLanguage == 'haitian') {
-        vm.activeLink = 'Haitian-Creole_link';
-        vm.activeTitle = 'Haitian-Creole_title'; 
+        vm.activeLink = 'Haitian_Creole_link';
+        vm.activeTitle = 'Haitian_Creole_title'; 
       } else if(vm.activeLanguage == 'indonesian') {
         vm.activeLink = 'Indonesian_link';
         vm.activeTitle = 'Indonesian_title'; 
