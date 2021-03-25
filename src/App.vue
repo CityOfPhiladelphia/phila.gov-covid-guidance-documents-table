@@ -165,8 +165,13 @@ export default {
 
           tempData.forEach(function(site) {
             site['Title'] = site['English title'];
-            site['Format'] = site['Type'].trim();
-            site['Default_format'] = site['Type'].trim();
+            if ( site['Type'] ) {
+              site['Format'] = site['Type'].trim();
+              site['Default_format'] = site['Type'].trim();
+            } else {
+              site['Format'] = 'Default';
+              site['Default_format'] = 'Default';
+            }
             site['Default_category'] = site['Category'];
             site['Link'] = site['English URL'];
             site['Chinese_title'] = site['Chinese title'];
