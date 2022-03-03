@@ -55,7 +55,7 @@
             v-if="row.Date"
             class="block"
           >
-            <span class="format">{{ row.Date  | formatDate }}</span>
+            <span class="format">{{ row.Date | formatDate }}</span>
           </div>
         </div>
         <div
@@ -171,6 +171,22 @@ export default {
           },
         }],
         customSorting: {
+          date(ascending) {
+            return function (dateA, dateB) {
+              let a = new Date(dateA.Date);
+              let b = new Date(dateB.Date);
+              if (a === b) {
+                return 0;
+              } else if (!(a instanceof Date && !isNaN(a))) {
+                return 1;
+              } else if (!(b instanceof Date && !isNaN(b))) {
+                return -1;
+              } else if (ascending) {
+                return a < b ? -1 : 1;
+              }
+              return a < b ? 1 : -1;
+            };
+          },
           Título(ascending) {
             return function (a, b) {
               if (ascending) {
