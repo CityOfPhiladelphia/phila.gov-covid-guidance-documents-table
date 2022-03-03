@@ -278,7 +278,6 @@ export default {
       await vm.orderLanguages();
       await vm.getDocumentTables();
       await vm.setCategories();
-      await vm.addDescriptionClass();
       await vm.setLanguageFilter();
       await vm.scrollToDiv(); 
     },
@@ -361,16 +360,6 @@ export default {
       await vm.setLanguageFilter();
       await vm.setCategories();
       this.$refs.siteFinder.filterTable( true );
-    },
-    async addDescriptionClass() {
-      let vm = this;
-      let tableHeadings = vm.$el.getElementsByClassName('VueTables__heading');
-      console.log(tableHeadings);
-      for (let column of tableHeadings) {
-        if(column.innerHTML == 'Date') {
-          column.closest('th').setAttribute( 'class', 'VueTables__sortable non-sortable' );
-        }
-      }
     },
   },
 };

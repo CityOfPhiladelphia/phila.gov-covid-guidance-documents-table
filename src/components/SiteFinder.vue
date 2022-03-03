@@ -90,7 +90,7 @@ export default {
     'formatDate': function(value) {
       if (value) {
         var d = new Date(value);
-        var month = d.toLocaleString('en-us', { month: 'long' ,timeZone: "UTC" } );
+        var month = d.toLocaleString('en-us', { month: 'short' ,timeZone: "UTC" } );
         var year = d.toLocaleString('en-us', { year: 'numeric' ,timeZone: "UTC" });
         var day = d.toLocaleString('en-us', { day: 'numeric' ,timeZone: "UTC" });
         return month + " "+ day + ", " + year;
