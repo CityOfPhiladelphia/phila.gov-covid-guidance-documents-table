@@ -48,6 +48,17 @@
           </div>
         </div>
         <div
+          :slot="$t('date')"
+          slot-scope="{row}"
+        >
+          <div 
+            v-if="row.Date"
+            class="block"
+          >
+            <span class="format">{{ row.Date  | formatDate }}</span>
+          </div>
+        </div>
+        <div
           slot="beforeFilter"
           class="multiselect-before-filter"
         >
@@ -74,6 +85,17 @@ export default {
   name: 'SiteFinder',
   components: {
     Multiselect,
+  },
+  filters: {
+    'formatDate': function(value) {
+      if (value) {
+        var d = new Date(value);
+        var month = d.toLocaleString('en-us', { month: 'long' ,timeZone: "UTC" } );
+        var year = d.toLocaleString('en-us', { year: 'numeric' ,timeZone: "UTC" });
+        var day = d.toLocaleString('en-us', { day: 'numeric' ,timeZone: "UTC" });
+        return month + " "+ day + ", " + year;
+      }
+    },
   },
   props: {
     documentTable: {
@@ -112,7 +134,7 @@ export default {
   },
   computed: {
     columns() {
-      return [ this.$i18n.t('title'), this.$i18n.t('category'), this.$i18n.t('format') ];
+      return [ this.$i18n.t('title'), this.$i18n.t('category'), this.$i18n.t('format'),  this.$i18n.t('date') ];
     },
     theArchiveLink() {
       return this.api.url+'the-latest/archives/#/?templates=press_release&templates=post&search=covid&language=' + encodeURIComponent(this.activeLanguage);
