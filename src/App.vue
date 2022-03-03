@@ -165,7 +165,6 @@ export default {
           });
 
           tempData.forEach(function(site) {
-            // if(site['visibility'] == 'true') {
             site['Title'] = site['English title'];
             if ( site['Type'] ) {
               site['Format'] = site['Type'].trim();
@@ -206,8 +205,6 @@ export default {
             site['Vietnamese_link'] = site['Vietnamese URL'];
             site['Active_link'] = site['Link'];
             site['Active_Title'] = site['Title'];
-            // site['Date'] = site['Date']
-            // }
           });
           vm.documentTables = tempData;
           return true;
@@ -262,7 +259,6 @@ export default {
         site['Active_Title'] = site[ vm.activeTitle ];
         site['Category'] = vm.$i18n.t(site['Default_category']);
         site['Format'] = vm.$i18n.t(site['Default_format']);
-        // site['Date'] = site['Date'];
       });
       vm.filteredTable = vm.documentTables.filter(site => !!site.Active_Title);
     },
