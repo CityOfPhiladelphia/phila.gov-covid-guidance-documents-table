@@ -164,7 +164,11 @@ export default {
             return entry["fields"];
           });
 
-          tempData.forEach(function(site) {
+          let visibleOnly = tempData.filter(function(site) {
+            return site['Visibility'] == "true";
+          });
+          
+          visibleOnly.forEach(function(site) {
             site['Title'] = site['English title'];
             if ( site['Type'] ) {
               site['Format'] = site['Type'].trim();
