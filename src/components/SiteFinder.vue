@@ -48,6 +48,17 @@
           </div>
         </div>
         <div
+          :slot="$t('date')"
+          slot-scope="{row}"
+        >
+          <div 
+            v-if="row.Date"
+            class="block"
+          >
+            <span class="format">{{ row.Date | formatDate }}</span>
+          </div>
+        </div>
+        <div
           slot="beforeFilter"
           class="multiselect-before-filter"
         >
@@ -74,6 +85,17 @@ export default {
   name: 'SiteFinder',
   components: {
     Multiselect,
+  },
+  filters: {
+    'formatDate': function(value) {
+      if (value) {
+        var d = new Date(value);
+        var month = d.toLocaleString('en-us', { month: 'short' ,timeZone: "UTC" } );
+        var year = d.toLocaleString('en-us', { year: 'numeric' ,timeZone: "UTC" });
+        var day = d.toLocaleString('en-us', { day: 'numeric' ,timeZone: "UTC" });
+        return month + " "+ day + ", " + year;
+      }
+    },
   },
   props: {
     documentTable: {
@@ -112,7 +134,7 @@ export default {
   },
   computed: {
     columns() {
-      return [ this.$i18n.t('title'), this.$i18n.t('category'), this.$i18n.t('format') ];
+      return [ this.$i18n.t('title'), this.$i18n.t('category'), this.$i18n.t('format'),  this.$i18n.t('date') ];
     },
     theArchiveLink() {
       return this.api.url+'the-latest/archives/#/?templates=press_release&templates=post&search=covid&language=' + encodeURIComponent(this.activeLanguage);
@@ -149,6 +171,22 @@ export default {
           },
         }],
         customSorting: {
+          date(ascending) {
+            return function (dateA, dateB) {
+              let a = new Date(dateA.Date);
+              let b = new Date(dateB.Date);
+              if (a === b) {
+                return 0;
+              } else if (!(a instanceof Date && !isNaN(a))) {
+                return 1;
+              } else if (!(b instanceof Date && !isNaN(b))) {
+                return -1;
+              } else if (ascending) {
+                return a < b ? -1 : 1;
+              }
+              return a < b ? 1 : -1;
+            };
+          },
           Título(ascending) {
             return function (a, b) {
               if (ascending) {
