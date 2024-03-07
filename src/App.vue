@@ -80,7 +80,6 @@ import axios from 'axios';
 import SiteFinder from './components/SiteFinder.vue';
 import { ClientTable } from 'vue-tables-2';
 import { loadLanguageAsync } from './i18n.js';
-const app_key = "keyNcseMILLKVVFC3";
 
 Vue.use(ClientTable, {
   options: {}, 
@@ -96,11 +95,9 @@ export default {
   },
   data () {
     return {
-      postId: window.phila_js_vars.postID,
-      // postId: 121009,
       api: {
         url: process.env.VUE_APP_API_URL,
-        endpoint: 'wp-json/programs/v1/archives/',
+        endpoint: process.env.VUE_APP_API_GET_POST,
         airTable: process.env.VUE_APP_AIR_TABLES_API,
       },
       documentTables: [],
@@ -123,6 +120,9 @@ export default {
         return wys.translated_language == vm.activeLanguage;
       });
     },
+    getPostId: function() {
+      return (window.phila_js_vars && window.phila_js_vars.postID) ? window.phila_js_vars.postID : process.env.VUE_APP_TEST_ID;
+    },
   },
   created () {
     let vm = this;
@@ -131,7 +131,7 @@ export default {
   methods: {
     async getPost () {
       let vm = this;
-      return axios.get( vm.api.url+vm.api.endpoint+vm.postId )
+      return axios.get( vm.api.endpoint+vm.getPostId )
         .then(async (result) => {
           vm.post = result.data;
           return true;
@@ -155,7 +155,7 @@ export default {
       let vm = this;
       return axios.get(
         vm.api.airTable,
-        { headers: { Authorization: "Bearer " + app_key }},
+        { headers: { Authorization: "Bearer " + process.env.VUE_APP_PAT }},
       ).
         then(async (response) => {
         
@@ -163,7 +163,11 @@ export default {
             return entry["fields"];
           });
 
-          tempData.forEach(function(site) {
+          let visibleOnly = tempData.filter(function(site) {
+            return site['Visibility'] == "true";
+          });
+          
+          visibleOnly.forEach(function(site) {
             site['Title'] = site['English title'];
             if ( site['Type'] ) {
               site['Format'] = site['Type'].trim();
