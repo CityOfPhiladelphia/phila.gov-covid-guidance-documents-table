@@ -9,17 +9,19 @@ jobs:
     runs-on: ubuntu-latest
     steps: 
       - name: Setup node
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with: 
-            node-version: '10.x'
+            node-version: 16
+            cache: 'npm'
       - uses: actions/checkout@main
       - name: Build project files
         run: |
-          npm install
+          npm ci
           npm run build-production
+        env:
+            VUE_APP_PAT: ${{ secrets.VUE_APP_PAT }}
       - name: Deploy to s3
         env: 
-            VUE_APP_PAT: ${{ env.VUE_APP_PAT }}
             AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
             AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
             AWS_REGION: us-east-1
