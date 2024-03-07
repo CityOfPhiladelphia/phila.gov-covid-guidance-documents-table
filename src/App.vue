@@ -80,7 +80,6 @@ import axios from 'axios';
 import SiteFinder from './components/SiteFinder.vue';
 import { ClientTable } from 'vue-tables-2';
 import { loadLanguageAsync } from './i18n.js';
-const app_key = "keyNcseMILLKVVFC3";
 
 Vue.use(ClientTable, {
   options: {}, 
@@ -156,7 +155,7 @@ export default {
       let vm = this;
       return axios.get(
         vm.api.airTable,
-        { headers: { Authorization: "Bearer " + app_key }},
+        { headers: { Authorization: "Bearer " + process.env.VUE_APP_PAT }},
       ).
         then(async (response) => {
         

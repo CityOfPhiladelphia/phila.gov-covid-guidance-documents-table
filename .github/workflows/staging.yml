@@ -8,15 +8,18 @@ jobs:
     name: Build files
     runs-on: ubuntu-latest
     steps: 
-      - name: Setup node
-        uses: actions/setup-node@v1
-        with: 
-            node-version: '10.x'
       - uses: actions/checkout@main
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+            node-version: 16
+            cache: 'npm'
       - name: Build project files
         run: |
-          npm install
+          npm ci
           npm run build-staging
+        env:
+          VUE_APP_PAT: ${{ secrets.VUE_APP_PAT }}
       - name: Deploy to s3
         env: 
             AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
